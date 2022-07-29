@@ -1,26 +1,11 @@
+import { Provider } from "react-redux";
+import {store} from "./redux/store"
+import Router from "./config/router";
 
-import {useEffect} from "react"
-import {signup, signIn} from "./config/firebase"
-
-const App = (() =>{
-  useEffect(() => {
-  signup("Admin", "admin@gmail.com", "123456")
-  .then(() => {
-    console.log("Done");
-  })
-  .catch((e) => {
-    console.log(e);
-  });
-  signIn("admin@gmail.com", "123456")
-  .then(() => {
-    console.log("Done");
-  })
-  .catch((e) => {
-    console.log(e);
-  });
-
-},[]);
-  return <h1>Hİ, APP</h1>
-});
-
-export default App;
+export default function App(){
+  return(
+    <Provider store={store}>
+      <Router/>
+    </Provider>
+  )
+}
