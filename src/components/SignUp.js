@@ -1,7 +1,7 @@
 import React from "react";
 import '../components/SignUp.css'
 import {useSelector, useDispatch} from "react-redux"
-import {changeName, changeEmail, changePassword} from '../redux/authSlice'
+import {changeName, changeEmail, changePassword, register} from '../redux/authSlice'
 
 function SignUp() {
   const name = useSelector((state) => state.auth.name)
@@ -25,6 +25,11 @@ function SignUp() {
     dispatch(changePassword(e.currentTarget.value))
   }
 
+  const handleSubmit = (e)=> {
+    e.preventDefault()
+    dispatch(register({name , email, password}))
+  };
+
   return (
     <div class="wrapper fadeInDown">
       <div id="formContent">
@@ -37,12 +42,15 @@ function SignUp() {
         </div>
 
 
-        <form>
-        <input type="text" id="name" class="fadeIn second" name="login" placeholder="name" autoFocus onChange={handleNameChange} value={name} />
-          <input type="text" id="login" class="fadeIn second" name="login" placeholder="email" 
+        <form onSubmit={handleSubmit}>
+          <p className="text-center" style={{color:"#39ace7"}}>Name</p>
+       <input type="text" id="name" class="fadeIn second" name="login" autoFocus onChange={handleNameChange} value={name} />
+       <p className="text-center" style={{color:"#39ace7"}}>Email</p>
+          <input type="email" id="login" class="fadeIn second" name="login"
            onChange={handleEmailChange} value={email}/>
-          <input type="text" id="password" class="fadeIn third" name="login" placeholder="password"
-          onChange={handlePasswordChange} value={password}/> />
+         <p className="text-center" style={{color:"#39ace7"}}>Password</p>
+          <input type="password" id="password" class="fadeIn third" name="login" 
+          onChange={handlePasswordChange} value={password}/>
           <input type="submit" class="fadeIn fourth" value="Log In" />
         </form>
 
