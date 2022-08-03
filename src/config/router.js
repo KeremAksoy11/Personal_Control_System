@@ -4,6 +4,7 @@ import SignIn from "../components/SignIn"
 import Main from "../components/Main"
 import AuthLayout from "../layout/AuthLayout"
 import Layout from "../layout/Layout"
+import ForgotPassword from "../components/ForgotPassword"
 
 export default function Router() {
    return (
@@ -15,6 +16,7 @@ export default function Router() {
             <Route element={<AuthLayout />}>
                <Route path="/sign-in" element={<SignIn />} />
                <Route path="/sign-up" element={<SignUp />} />
+               <Route path="/forgotPassword" element={<ForgotPassword />} />
             </Route>
          </Routes>
       </BrowserRouter>

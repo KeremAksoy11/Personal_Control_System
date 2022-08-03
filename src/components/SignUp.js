@@ -63,7 +63,7 @@ function SignUp() {
 
 
         <div id="formFooter">
-          <a class="underlineHover" href="/#">Forgot Password?</a>
+          
         </div>
 
       </div>

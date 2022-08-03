@@ -57,7 +57,9 @@ function SignIn() {
 
 
         <div id="formFooter">
+          <Link to={"/forgotPassword"}>
           <a class="underlineHover" href="/#">Forgot Password?</a>
+          </Link>
         </div>
 
       </div>

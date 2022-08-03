@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { createUserWithEmailAndPassword, updateCurrentUser, signOut, signInWithEmailAndPassword } from "firebase/auth"
+import { createUserWithEmailAndPassword, updateCurrentUser, signOut, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth"
 import { auth } from "../config/firebase"
 
 const initialState = {
@@ -37,6 +37,15 @@ export const logOut = createAsyncThunk("auth/logOut", async () => {
     await signOut(auth);
 })
 
+export const ForgotPass = createAsyncThunk("auth/ForgotPassword", async (email, rejectWithValue) => {
+try{
+   await sendPasswordResetEmail(auth, email)
+}
+catch(e){
+return rejectWithValue(e.code)
+}
+});
+
 const authSlice = createSlice({
     name: 'auth',
     initialState: initialState,
@@ -71,6 +80,16 @@ const authSlice = createSlice({
         })
         .addCase(login.rejected, (state, action) => 
         {state.error = action.payload;
+            state.isLoading = false;
+        })
+        .addCase(ForgotPass.pending, (state, action) =>{
+            state.isLoading = true;
+        })
+        .addCase(ForgotPass.rejected, (state, action) => {
+            state.error = action.payload;
+            state.isLoading = false;
+        })
+        .addCase(ForgotPass.fulfilled, (state, action) =>{
             state.isLoading = false;
         });
     },
