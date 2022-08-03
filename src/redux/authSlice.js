@@ -1,37 +1,80 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import {  createUserWithEmailAndPassword, updateCurrentUser} from "firebase/auth"
-import {auth } from "../config/firebase"
+import { createUserWithEmailAndPassword, updateCurrentUser, signOut, signInWithEmailAndPassword } from "firebase/auth"
+import { auth } from "../config/firebase"
 
 const initialState = {
-    name : "",
-    email : "",
-    password : "",
+    name: "",
+    email: "",
+    password: "",
+
+    isLoading : false,
+    error: null,
 }
 
 export const register = createAsyncThunk(
-    "auth/register", 
-    async ({name, email, password})=>{
-        await  createUserWithEmailAndPassword(auth, email, password);
-        await updateCurrentUser(auth, {displayName : name})
-   
-    
-});
+    "auth/register",
+    async ({ name, email, password }, { rejectWithValue }) => {
+        try {
+            await createUserWithEmailAndPassword(auth, email, password);
+            await updateCurrentUser(auth, { displayName: name })
+        } catch (e) {
+
+            return rejectWithValue(e.code)
+        }
+    });
+
+export const login = createAsyncThunk("auth/login",
+ async ({ email, password },{ rejectWithValue  } ) => {
+    try {
+        await signInWithEmailAndPassword(auth, email, password);
+    }
+    catch (e) {
+        return rejectWithValue(e.code)
+    }
+})
+
+export const logOut = createAsyncThunk("auth/logOut", async () => {
+    await signOut(auth);
+})
 
 const authSlice = createSlice({
-    name : 'auth',
+    name: 'auth',
     initialState: initialState,
-    reducers : {
-        changeName : (state, action) => {
+    reducers: {
+        changeName: (state, action) => {
             state.name = action.payload;
         },
-        changeEmail : (state, action) => {
+        changeEmail: (state, action) => {
             state.email = action.payload;
         },
-        changePassword : (state, action) => {
+        changePassword: (state, action) => {
             state.password = action.payload;
         },
     },
+    extraReducers : (builder) =>{
+        builder
+        .addCase(register.pending, (state) =>{
+            state.isLoading = true;
+        })
+        .addCase(register.fulfilled, (state) =>{
+            state.isLoading = false;
+        })
+        .addCase(register.rejected, (state, action) => 
+        {state.error = action.payload;
+            state.isLoading = false;
+        })
+        .addCase(login.pending, (state) =>{
+            state.isLoading = true;
+        })
+        .addCase(login.fulfilled, (state) =>{
+            state.isLoading = false;
+        })
+        .addCase(login.rejected, (state, action) => 
+        {state.error = action.payload;
+            state.isLoading = false;
+        });
+    },
 });
 
-export const {changeName, changeEmail, changePassword} = authSlice.actions;
+export const { changeName, changeEmail, changePassword } = authSlice.actions;
 export default authSlice.reducer;

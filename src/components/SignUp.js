@@ -2,12 +2,15 @@ import React from "react";
 import '../components/SignUp.css'
 import {useSelector, useDispatch} from "react-redux"
 import {changeName, changeEmail, changePassword, register} from '../redux/authSlice'
+import Loading  from './Loading'
+import {Link} from 'react-router-dom'
 
 function SignUp() {
   const name = useSelector((state) => state.auth.name)
   const email = useSelector((state) => state.auth.email)
   const password = useSelector((state) => state.auth.password)
- 
+  const error = useSelector((state) => state.auth.error)
+  const isLoading = useSelector((state) => state.auth.isLoading)
   
 
   const dispatch = useDispatch();
@@ -33,13 +36,17 @@ function SignUp() {
   return (
     <div class="wrapper fadeInDown">
       <div id="formContent">
-
+      <Link to={"/sign-in"}>
         <h2 class="inactive underlineHover"> Sign In </h2>
+      </Link>
         <h2 class="active">Sign Up </h2>
 
         <div class="fadeIn first">
         <img src="https://www.svgrepo.com/show/4529/user.svg" height={75} width={75} altid="icon" alt="User Icon" />
         </div>
+        {error && (
+          <h5 className="small" style={{ color : "red"}}>{error}</h5>
+        )}
 
 
         <form onSubmit={handleSubmit}>
@@ -51,7 +58,7 @@ function SignUp() {
          <p className="text-center" style={{color:"#39ace7"}}>Password</p>
           <input type="password" id="password" class="fadeIn third" name="login" 
           onChange={handlePasswordChange} value={password}/>
-          <input type="submit" class="fadeIn fourth" value="Log In" />
+          <button type="submit" disabled={isLoading} class="fadeIn fourth">{isLoading ? <Loading/> : "Sign In"  }</button>
         </form>
 
 
