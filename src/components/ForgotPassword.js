@@ -18,28 +18,28 @@ export default function ForgotPassword(){
     };
 
     return (
-        <div class="wrapper fadeInDown">
+        <div className="wrapper fadeInDown">
         <div id="formContent">
   
           <br></br>
   
-          <div class="fadeIn first">
+          <div className="fadeIn first">
           <img src="https://www.svgrepo.com/show/4529/user.svg" height={50} width={50} altid="icon" alt="User Icon" />
           </div>
         
           <form onSubmit={handleSubmit}>
           <p className="text-center" style={{color:"#39ace7"}}>Email</p>
-            <input type="email" id="login" class="fadeIn second" name="login"
+            <input type="email" id="login" className="fadeIn second" name="login"
              onChange={handleEmailChange} value={email}/>
           
            
-            <button type="submit" disabled={isLoading} class="fadeIn fourth">{isLoading ? <Loading/> :  "Get Code" }</button>
+            <button type="submit" disabled={isLoading} className="fadeIn fourth">{isLoading ? <Loading/> :  "Get Code" }</button>
         
           </form>
 
           <div id="formFooter">
           <Link to={"/sign-in"}>
-          <a class="underlineHover" href="/#">I Remember My Account İnfo</a>
+          <a className="underlineHover" href="/#">I Remember My Account İnfo</a>
           </Link>
         </div>
           </div>

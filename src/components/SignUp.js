@@ -34,14 +34,14 @@ function SignUp() {
   };
 
   return (
-    <div class="wrapper fadeInDown">
+    <div className="wrapper fadeInDown">
       <div id="formContent">
       <Link to={"/sign-in"}>
-        <h2 class="inactive underlineHover"> Sign In </h2>
+        <h2 className="inactive underlineHover"> Sign In </h2>
       </Link>
-        <h2 class="active">Sign Up </h2>
+        <h2 className="active">Sign Up </h2>
 
-        <div class="fadeIn first">
+        <div className="fadeIn first">
         <img src="https://www.svgrepo.com/show/4529/user.svg" height={75} width={75} altid="icon" alt="User Icon" />
         </div>
         {error && (
@@ -51,14 +51,14 @@ function SignUp() {
 
         <form onSubmit={handleSubmit}>
           <p className="text-center" style={{color:"#39ace7"}}>Name</p>
-       <input type="text" id="name" class="fadeIn second" name="login" autoFocus onChange={handleNameChange} value={name} />
+       <input type="text" id="name" className="fadeIn second" name="login" autoFocus onChange={handleNameChange} value={name} />
        <p className="text-center" style={{color:"#39ace7"}}>Email</p>
-          <input type="email" id="login" class="fadeIn second" name="login"
+          <input type="email" id="login" className="fadeIn second" name="login"
            onChange={handleEmailChange} value={email}/>
          <p className="text-center" style={{color:"#39ace7"}}>Password</p>
-          <input type="password" id="password" class="fadeIn third" name="login" 
+          <input type="password" id="password" className="fadeIn third" name="login" 
           onChange={handlePasswordChange} value={password}/>
-          <button type="submit" disabled={isLoading} class="fadeIn fourth">{isLoading ? <Loading/> : "Sign In"  }</button>
+          <button type="submit" disabled={isLoading} className="fadeIn fourth">{isLoading ? <Loading/> : "Sign In"  }</button>
         </form>
 
 

@@ -1,22 +1,29 @@
 import React from "react";
-import { usePersonalLister, deletePersonal, addPersonal} from "../config/firebase"
+import { useDispatch, useSelector } from "react-redux";
+import {addPersonal, deletePersonal} from '../redux/personalSlice'
+import { usePersonalLister} from "../config/firebase"
 
 
 function Main() {
-    const personal = usePersonalLister()
+    usePersonalLister()
+
+    const dispatch = useDispatch();
+
+    const personal = useSelector((state) => state.personal.personal);
     
     return (
       <div>
-        <button onClick={() => addPersonal()}>Ekle</button>
-            {personal.map((personal) => 
-            <div>
+        <button onClick={() => dispatch(addPersonal())}>Ekle</button>
+
+             {personal.map((personal) => 
+            <div key={personal.id}>
                 <h2  style={{color : 'black'}} >{personal.name + " "} </h2>
                 <button onClick={()=>{
-                    deletePersonal(personal.id);
+                    dispatch(deletePersonal(personal.id));
                 }}>delete </button>
                </div>
                
-            )}        
+            )}     
         </div>
     );
 }

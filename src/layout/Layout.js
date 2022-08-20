@@ -33,33 +33,33 @@ export default function Layout() {
 
     return (
         <>
-            <nav class="navbar navbar-expand-lg bg-primary">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#">
-                        <img src="https://www.svgrepo.com/show/47767/exchange-personel.svg" alt="" width="30" height="24" class="d-inline-block align-text-top" />
+            <nav className="navbar navbar-expand-lg bg-primary">
+                <div className="container-fluid">
+                    <a className="navbar-brand" href={() => false}>
+                        <img src="https://www.svgrepo.com/show/47767/exchange-personel.svg" alt="" width="30" height="24" className="d-inline-block align-text-top" />
                     </a>
-                    <a class="navbar-brand" href="#">Personal Control System</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+                    <a className="navbar-brand" href={() => false}>Personal Control System</a>
+                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Personeller</a>
+                    <div className="collapse navbar-collapse" id="navbarNav">
+                        <ul className="navbar-nav">
+                            <li className="nav-item">
+                                <a className="nav-link active" aria-current="page" href={() => false}>Personeller</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Toplantılar</a>
+                            <li className="nav-item">
+                                <a className="nav-link" href={() => false}>Toplantılar</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Duyurular</a>
+                            <li className="nav-item">
+                                <a className="nav-link" href={() => false}>Duyurular</a>
                             </li>
                         </ul>
                     </div>
-                    <div class="dropdown">
-                        <a class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false" ><img src="https://freesvg.org/img/abstract-user-flat-1.png" alt="" width="35" height="35" class="d-inline-block align-text-top" /></a>
+                    <div className="dropdown">
+                        <a className="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"href={() => false} role="button" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false" ><img src="https://freesvg.org/img/abstract-user-flat-1.png" alt="" width="35" height="35" className="d-inline-block align-text-top" /></a>
 
 
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             
                             <Button variant="black" onClick={handleShowUser}>
                             Kişisel Bilgilerim
@@ -80,7 +80,7 @@ export default function Layout() {
                                 </Modal.Footer>
                             </Modal>
 
-                            <li><hr class="dropdown-divider" /></li>
+                            <li><hr className="dropdown-divider" /></li>
                             <Button variant="black" onClick={handleShowClose}>
                             Çıkış Yap
                             </Button>

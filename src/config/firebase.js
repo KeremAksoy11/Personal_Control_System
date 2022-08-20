@@ -1,8 +1,10 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth} from "firebase/auth"
-import {getFirestore, collection, onSnapshot, deleteDoc, doc, addDoc } from "firebase/firestore";
-import { useEffect, useState } from "react";
+import {getFirestore, collection, onSnapshot } from "firebase/firestore";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setPersonal } from "../redux/personalSlice";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCq7bivBWFAMewAKdEG7as2V_bVwlTnCqI",
@@ -17,29 +19,24 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 getAnalytics(app);
 export const auth = getAuth(app)
-
-
 export const db = getFirestore(app);
 
-const personalRef = collection(db,"Personal")
+export const personalRef = collection(db,"Personal")
 
 export const usePersonalLister = () => {
-
-  const [personal, setPersonal] = useState([]);
-
+  const dispatch = useDispatch()
   useEffect(() => {
     return onSnapshot(personalRef, (snapshot) => {
-     setPersonal(snapshot.docs.map((doc) =>{
+    const docs = snapshot.docs.map((doc) => {
       const data = doc.data();
-      return {id: doc.id, ...data};
-     }))
+      return {id : doc.id, ...data}
     });
-  },[]);
-
-  return personal;
+    dispatch(setPersonal((docs)))
+  });
+}, [dispatch]);
 };
 
-export const deletePersonal = (id) =>{
+/* export const deletePersonal = (id) =>{
   deleteDoc(doc(db, "Personal", id));
 }
 
@@ -53,7 +50,7 @@ export const addPersonal = () =>{
     uid : uid
   })
 }
-
+ */
 /* export const signup = async (name, email, password) =>{
     await  createUserWithEmailAndPassword(auth, email, password);
   await updateCurrentUser(auth, {displayName : name})
