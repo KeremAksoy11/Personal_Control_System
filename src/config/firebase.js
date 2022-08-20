@@ -1,11 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import {
-    getAuth,
-    createUserWithEmailAndPassword, 
-    updateCurrentUser,
-    signInWithEmailAndPassword
-    } from "firebase/auth"
+import { getAuth} from "firebase/auth"
+import {getFirestore, collection, onSnapshot, deleteDoc, doc, addDoc } from "firebase/firestore";
+import { useEffect, useState } from "react";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCq7bivBWFAMewAKdEG7as2V_bVwlTnCqI",
@@ -21,12 +18,47 @@ const app = initializeApp(firebaseConfig);
 getAnalytics(app);
 export const auth = getAuth(app)
 
-export const signup = async (name, email, password) =>{
+
+export const db = getFirestore(app);
+
+const personalRef = collection(db,"Personal")
+
+export const usePersonalLister = () => {
+
+  const [personal, setPersonal] = useState([]);
+
+  useEffect(() => {
+    return onSnapshot(personalRef, (snapshot) => {
+     setPersonal(snapshot.docs.map((doc) =>{
+      const data = doc.data();
+      return {id: doc.id, ...data};
+     }))
+    });
+  },[]);
+
+  return personal;
+};
+
+export const deletePersonal = (id) =>{
+  deleteDoc(doc(db, "Personal", id));
+}
+
+export const addPersonal = () =>{
+
+  const uid = auth.currentUser?.uid
+  if (!uid) return;
+  addDoc(personalRef, {
+    name : "Tuğçe",
+    surname : "BAŞARAN",
+    uid : uid
+  })
+}
+
+/* export const signup = async (name, email, password) =>{
     await  createUserWithEmailAndPassword(auth, email, password);
   await updateCurrentUser(auth, {displayName : name})
 }
 
 export const signIn =  async ( email, password) =>{
   await  signInWithEmailAndPassword(auth, email, password)
-}
-;
+}; */

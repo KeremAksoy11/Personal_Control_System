@@ -1,19 +1,22 @@
 import React from "react";
-import {useSelector, useDispatch} from "react-redux"
-import { logOut } from "../redux/authSlice"
+import { usePersonalLister, deletePersonal, addPersonal} from "../config/firebase"
+
 
 function Main() {
-    const dispatch = useDispatch();
-    const name = useSelector((state) => state.auth.name)
+    const personal = usePersonalLister()
     
-
-    const handleLogOut = () => {
-        dispatch(logOut());
-    }
     return (
-        <div>
-            <h2  class="italic" style={{color : 'white'}}>Welcome {name}</h2>
-            <button onClick={handleLogOut}> Sign Out</button>
+      <div>
+        <button onClick={() => addPersonal()}>Ekle</button>
+            {personal.map((personal) => 
+            <div>
+                <h2  style={{color : 'black'}} >{personal.name + " "} </h2>
+                <button onClick={()=>{
+                    deletePersonal(personal.id);
+                }}>delete </button>
+               </div>
+               
+            )}        
         </div>
     );
 }
