@@ -18,7 +18,7 @@ function SignIn() {
     dispatch(changeEmail(e.currentTarget.value))
   }
   
-  const handlePasswordChange = (e) =>{
+  const handlePasswordChange = (e) =>{ 
     dispatch(changePassword(e.currentTarget.value))
   }
 

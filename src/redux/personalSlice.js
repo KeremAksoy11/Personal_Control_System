@@ -17,13 +17,13 @@ export const deletePersonal = createAsyncThunk("personal/deletePersonal",async (
 const initialState = {
 
     draftPersonal: {
-        name : "Oğuz",
-        surname : "AKSOY",
-        birthday : "23/10/1983",
-        startDate : "20/08/2022",
-        department : "Software",
-        phone : "5384382444",
-        mail : "keremaksoy@gmail.com",
+        name : "",
+        surname : "",
+        birthday : "",
+        startDate : "",
+        department : "",
+        phone : "",
+        mail : "",
     },
     personal : [],
 }
@@ -49,7 +49,10 @@ const personalSlice = createSlice({
             state.draftPersonal.department = action.payload;
         },
         changeDraftPersonalPhone : (state, action) =>{
-            state.draftPersonal.phone = action.payload; 
+            state.draftPersonal.phone = action.payload;
+        },
+        changeDraftPersonalMail : (state, action) =>{
+            state.draftPersonal.mail = action.payload;
         },
         clearDraftPersonal : ( state) =>{
             state.draftPersonal = initialState.draftPersonal
@@ -70,6 +73,7 @@ export const  {
     changeDraftPersonalStartDate, 
     changeDraftPersonalDepartment, 
     changeDraftPersonalPhone,
+    changeDraftPersonalMail,
     clearDraftPersonal,
     setDraftPersonal,
     setPersonal

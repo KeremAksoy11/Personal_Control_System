@@ -12,7 +12,7 @@ const initialState = {
 }
 
 export const register = createAsyncThunk(
-    "auth/register",
+    "auth/register", 
     async ({ name, email, password }, { rejectWithValue }) => {
         try {
             await createUserWithEmailAndPassword(auth, email, password);

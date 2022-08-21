@@ -64,6 +64,7 @@ export default function Layout() {
                             <Button variant="black" onClick={handleShowUser}>
                             Kişisel Bilgilerim
                             </Button>
+                            
                             <Modal show={showUser} onHide={handleCloseUser}>
                                 <Modal.Header closeButton>
                                     <Modal.Title>Kişisel Bilgilerim</Modal.Title>
