@@ -17,12 +17,13 @@ export const deletePersonal = createAsyncThunk("personal/deletePersonal",async (
 const initialState = {
 
     draftPersonal: {
-        name : "Eda",
+        name : "Oğuz",
         surname : "AKSOY",
         birthday : "23/10/1983",
         startDate : "20/08/2022",
         department : "Software",
         phone : "5384382444",
+        mail : "keremaksoy@gmail.com",
     },
     personal : [],
 }
