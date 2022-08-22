@@ -31,10 +31,10 @@ function SignIn() {
     <div className="wrapper fadeInDown">
       <div id="formContent">
 
-        <h2 className="active"> Sign In </h2>
-        <Link to={'/sign-up'}>
+        <h2 className="active"> Giriş Yap </h2>
+       {/*  <Link to={'/sign-up'}>
         <h2 className="inactive underlineHover">Sign Up </h2>
-        </Link>
+        </Link> */}
 
         <div className="fadeIn first">
         <img src="https://www.svgrepo.com/show/4529/user.svg" height={75} width={75} altid="icon" alt="User Icon" />
@@ -47,18 +47,18 @@ function SignIn() {
         <p className="text-center" style={{color:"#39ace7"}}>Email</p>
           <input type="email" id="login" className="fadeIn second" name="login"
            onChange={handleEmailChange} value={email}/>
-         <p className="text-center" style={{color:"#39ace7"}}>Password</p>
+         <p className="text-center" style={{color:"#39ace7"}}>Şifre</p>
          <input type="password" id="password" className="fadeIn third" name="login" 
           onChange={handlePasswordChange} value={password}/>
          
-          <button type="submit" disabled={isLoading} className="fadeIn fourth">{isLoading ? <Loading/> : "Sign In"  }</button>
+          <button type="submit" disabled={isLoading} className="fadeIn fourth">{isLoading ? <Loading/> : "Giriş Yap"  }</button>
       
         </form>
 
 
         <div id="formFooter">
           <Link to={"/forgotPassword"}>
-          <a className="underlineHover" href="/#">Forgot Password?</a>
+          <a className="underlineHover" href="/#">Şifremi Unuttum</a>
           </Link>
         </div>
 

@@ -5,6 +5,9 @@ import Main from "../components/Main"
 import AuthLayout from "../layout/AuthLayout"
 import Layout from "../layout/Layout"
 import ForgotPassword from "../components/ForgotPassword"
+import Meeting from "../components/Meeting"
+import Announcements from "../components/Announcements"
+
 
 export default function Router() {
    return (
@@ -12,6 +15,9 @@ export default function Router() {
          <Routes>
             <Route element={<Layout />} >
                <Route path="/" element={<Main />} />
+               <Route path="/Main" element={<Main />} />
+               <Route path="/Meeting" element={<Meeting />} />
+               <Route path="/Announcements" element={<Announcements />} />
             </Route>
             <Route element={<AuthLayout />}>
                <Route path="/sign-in" element={<SignIn />} />

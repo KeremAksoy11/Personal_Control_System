@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addPersonal, deletePersonal } from '../redux/personalSlice'
+import { addPersonal, deletePersonal,  updatePersonal } from '../redux/personalSlice'
 import { usePersonalLister } from "../config/firebase"
 import '../components/table.css'
 import {
@@ -10,7 +10,15 @@ import {
     changeDraftPersonalStartDate,
     changeDraftPersonalDepartment,
     changeDraftPersonalPhone,
-    changeDraftPersonalMail
+    changeDraftPersonalMail,
+
+    changeUpdatePersonalName,
+    changeUpdatePersonalSurname,
+    changeUpdatePersonalBirthday,
+    changeUpdatePersonalStartDate,
+    changeUpdatePersonalDepartment,
+    changeUpdatePersonalPhone,
+    changeUpdatePersonalMail
 } from "../redux/personalSlice"
 
 import Button from 'react-bootstrap/Button';
@@ -21,16 +29,19 @@ import Col from "react-bootstrap/esm/Col";
 
 function Main() {
     usePersonalLister()
+    const dispatch = useDispatch();
 
     const [showPersonal, setPersonal] = useState(false);
-
     const handleClosePersonalModal = () => setPersonal(false);
     const handleShowPersonalModal = () => setPersonal(true);
 
-    const dispatch = useDispatch();
+
+    const [showUpdatePersonal, setUpdatePersonal] = useState(false);
+    const handleCloseUpdatePersonalModal = () => setUpdatePersonal(false);
+    const handleShowUpdatePersonalModal = () => setUpdatePersonal(true);
+
 
     const personal = useSelector((state) => state.personal.personal);
-
     const name = useSelector((state) => state.personal.draftPersonal.name);
     const surname = useSelector((state) => state.personal.draftPersonal.surname);
     const birthday = useSelector((state) => state.personal.draftPersonal.birthday);
@@ -38,6 +49,14 @@ function Main() {
     const department = useSelector((state) => state.personal.draftPersonal.department);
     const phone = useSelector((state) => state.personal.draftPersonal.phone);
     const mail = useSelector((state) => state.personal.draftPersonal.mail);
+
+    const updateName = useSelector((state) => state.personal.updatePersonal.name);
+    const updateSurname = useSelector((state) => state.personal.updatePersonal.surname);
+    const updateBirthday = useSelector((state) => state.personal.updatePersonal.birthday);
+    const updateStartDate = useSelector((state) => state.personal.updatePersonal.startDate);
+    const updateDepartment = useSelector((state) => state.personal.updatePersonal.department);
+    const updatePhone = useSelector((state) => state.personal.updatePersonal.phone);
+    const updateMail = useSelector((state) => state.personal.updatePersonal.mail);
 
 
     const handleNameChange = (e) => {
@@ -63,9 +82,41 @@ function Main() {
     const handleMailChange = (e) => {
         dispatch(changeDraftPersonalMail(e.currentTarget.value))
     }
+
+
+    const handleUpdateNameChange = (e) => {
+        dispatch(changeUpdatePersonalName(e.currentTarget.value))
+    }
+
+    const handleUpdateSurnameChange = (e) => {
+        dispatch(changeUpdatePersonalSurname(e.currentTarget.value))
+    }
+    const handleUpdateBirthdayChange = (e) => {
+        dispatch(changeUpdatePersonalBirthday(e.currentTarget.value))
+    }
+    const handleUpdateStartDateChange = (e) => {
+        dispatch(changeUpdatePersonalStartDate(e.currentTarget.value))
+    }
+    const handleUpdateDepartmentChange = (e) => {
+        dispatch(changeUpdatePersonalDepartment(e.currentTarget.value))
+    }
+    const handleUpdatePhoneChange = (e) => {
+        dispatch(changeUpdatePersonalPhone(e.currentTarget.value))
+    }
+    const handleUpdateMailChange = (e) => {
+        dispatch(changeUpdatePersonalMail(e.currentTarget.value))
+    }
+
+
+
     const handleSubmit = (e) => {
-     
+        e.preventDefault();
         dispatch(addPersonal({ name, surname, birthday, startDate, department, phone, mail }))
+    }
+
+    const handleUpdateSubmit = (e) => {
+        e.preventDefault();
+        dispatch(updatePersonal({updateName, updateSurname, updateBirthday, updateStartDate, updateDepartment, updatePhone, updateMail}))
     }
 
     return (
@@ -73,7 +124,6 @@ function Main() {
 
 
         <div className="container">
-           
 
             {<Modal show={showPersonal} onHide={handleClosePersonalModal}>
                 <Modal.Header closeButton>
@@ -92,9 +142,7 @@ function Main() {
                             value={name}
                             required
                             autoFocus
-
                         />
-
                         <p className="text-center" style={{ color: "#39ace7" }}>Soy İsim</p>
                         <Form.Control
                             type="text"
@@ -103,7 +151,6 @@ function Main() {
                             value={surname}
                             required
                         />
-
                         <p className="text-center" style={{ color: "#39ace7" }}>Doğum Tarihi</p>
                         <Form.Control
                             type="text"
@@ -111,9 +158,7 @@ function Main() {
                             onChange={handleBirthdayChange}
                             value={birthday}
                             required
-
                         />
-
                         <p className="text-center" style={{ color: "#39ace7" }}>İşe Başlangıç Tarihi</p>
                         <Form.Control
                             type="text"
@@ -130,9 +175,7 @@ function Main() {
                             onChange={handleDepartmentChange}
                             value={department}
                             required
-
                         />
-
                         <p className="text-center" style={{ color: "#39ace7" }}>Telefon Numarası</p>
                         <Form.Control
                             type="text"
@@ -140,10 +183,7 @@ function Main() {
                             onChange={handlePhoneChange}
                             value={phone}
                             required
-
                         />
-
-
                         <p className="text-center" style={{ color: "#39ace7" }}>Mail</p>
                         <Form.Control
                             type="text"
@@ -151,7 +191,6 @@ function Main() {
                             onChange={handleMailChange}
                             value={mail}
                             required
-
                         />
                         <Form.Group>
                             <Button variant="success" onClick={handleClosePersonalModal} type="submit">Personeli Ekle</Button>
@@ -166,17 +205,101 @@ function Main() {
                     </Button>
                 </Modal.Footer>
             </Modal>}
+
+
+            
+            {<Modal show={showUpdatePersonal} onHide={handleCloseUpdatePersonalModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Personel Güncelleme</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Row>
+                        <Col sm={12}>
+                    <Form onSubmit={handleUpdateSubmit}>
+                        <p className="text-center" style={{ color: "#39ace7" }}>İsim</p>
+                        <Form.Control 
+                        size = "sm"
+                            type="text"
+                            name="updatePersonal"
+                            onChange={handleUpdateNameChange}
+                            value={updateName}
+                            required
+                            autoFocus
+                        />
+                        <p className="text-center" style={{ color: "#39ace7" }}>Soy İsim</p>
+                        <Form.Control
+                            type="text"
+                            name="updatePersonal"
+                            onChange={handleUpdateSurnameChange}
+                            value={updateSurname}
+                            required
+                        />
+                        <p className="text-center" style={{ color: "#39ace7" }}>Doğum Tarihi</p>
+                        <Form.Control
+                            type="text"
+                            name="updatePersonal"
+                            onChange={handleUpdateBirthdayChange}
+                            value={updateBirthday}
+                            required
+                        />
+                        <p className="text-center" style={{ color: "#39ace7" }}>İşe Başlangıç Tarihi</p>
+                        <Form.Control
+                            type="text"
+                            name="updatePersonal"
+                            onChange={handleUpdateStartDateChange}
+                            value={updateStartDate}
+                            required
+                        />
+                        <p className="text-center" style={{ color: "#39ace7" }}>Bölüm</p>
+                        <Form.Control
+                            type="text"
+                            name="updatePersonal"
+                            onChange={handleUpdateDepartmentChange}
+                            value={updateDepartment}
+                            required
+                        />
+                        <p className="text-center" style={{ color: "#39ace7" }}>Telefon Numarası</p>
+                        <Form.Control
+                            type="text"
+                            name="updatePersonal"
+                            onChange={handleUpdatePhoneChange}
+                            value={updatePhone}
+                            required
+                        />
+                        <p className="text-center" style={{ color: "#39ace7" }}>Mail</p>
+                        <Form.Control
+                            type="text"
+                            name="updatePersonal"
+                            onChange={handleUpdateMailChange}
+                            value={updateMail}
+                            required
+                        />
+                        <Form.Group>
+                            <Button variant="success" onClick={handleCloseUpdatePersonalModal} type="submit">Personeli Güncelle</Button>
+                        </Form.Group>
+                    </Form>
+                    </Col>
+                    </Row>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="danger" onClick={handleCloseUpdatePersonalModal}>
+                        Kapat
+                    </Button>
+                </Modal.Footer>
+            </Modal>}
            
             <table>
                 
                 <thead>
                 <div>
-            <a href={() => false} onClick={handleShowPersonalModal}>
+            <a  className="right" href={() => false} onClick={handleShowPersonalModal}>
             <img src="https://www.svgrepo.com/show/121235/add-user.svg" alt="" width="55" height="50" className="d-inline-block align-text-top" />
             </a>
+
+          
             </div>
             
-                    <tr>
+                    <tr> 
                         <th>İsim</th>
                         <th>Soy İsim</th>
                         <th>Doğum Tarihi</th>
@@ -185,6 +308,7 @@ function Main() {
                         <th>Telefon Numarası</th>
                         <th>E Posta</th>
                         <th>Sil</th>
+                        <th>Güncelleme</th>
                         
                     </tr>
                 </thead>
@@ -200,11 +324,18 @@ function Main() {
                             <td>{personal.department}</td>
                             <td>{personal.phone}</td>
                             <td>{personal.mail}</td>
+                            <td>
                             <a href={() => false} onClick={() => dispatch(deletePersonal(personal.id))}>
 
                                 <img src="https://img.icons8.com/fluency/344/delete-forever.png" alt="" width="55" height="50" className="d-inline-block align-text-top" />
 
                             </a>
+                            </td>
+                            <td>
+                            <a href={() => false} onClick={handleShowUpdatePersonalModal}>
+            <img src="http://cdn.onlinewebfonts.com/svg/img_527780.png" alt="" width="55" height="50" className="d-inline-block align-text-top" />
+            </a>
+            </td>
                         </tr>
                     </tbody>
 

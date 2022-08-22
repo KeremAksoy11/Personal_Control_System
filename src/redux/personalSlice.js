@@ -1,6 +1,6 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
-import {addDoc, deleteDoc, doc} from "firebase/firestore"
-import { personalRef} from "../config/firebase";
+import {addDoc, deleteDoc, doc, updateDoc} from "firebase/firestore"
+import { personalRef,  db } from "../config/firebase";
 
 
 
@@ -14,6 +14,13 @@ export const deletePersonal = createAsyncThunk("personal/deletePersonal",async (
     await deleteDoc(doc(personalRef, id));
 })
 
+ export const updatePersonal = createAsyncThunk("personal/updatePersonal", async (id, {getState})=>{
+    const personalDoc = doc(db, "Personal", id)
+    await updateDoc(personalDoc, getState().personal.updatePersonal );
+});
+
+
+
 const initialState = {
 
     draftPersonal: {
@@ -26,6 +33,15 @@ const initialState = {
         mail : "",
     },
     personal : [],
+    updatePersonal: {
+        name : "",
+        surname : "",
+        birthday : "",
+        startDate : "",
+        department : "",
+        phone : "",
+        mail : "",
+    },
 }
 
 const personalSlice = createSlice({
@@ -63,6 +79,28 @@ const personalSlice = createSlice({
         setPersonal : (state, action) =>{
             state.personal = action.payload;
         },
+
+        changeUpdatePersonalName : (state, action) =>{
+            state.updatePersonal.name = action.payload;
+        },
+        changeUpdatePersonalSurname : (state, action) =>{
+            state.updatePersonal.surname = action.payload;
+        },
+        changeUpdatePersonalBirthday : (state, action) =>{
+            state.updatePersonal.birthday = action.payload;
+        },
+        changeUpdatePersonalStartDate : (state, action) =>{
+            state.updatePersonal.startDate = action.payload;
+        },
+        changeUpdatePersonalDepartment : (state, action) =>{
+            state.updatePersonal.department = action.payload;
+        },
+        changeUpdatePersonalPhone : (state, action) =>{
+            state.updatePersonal.phone = action.payload;
+        },
+        changeUpdatePersonalMail : (state, action) =>{
+            state.updatePersonal.mail = action.payload;
+        },
     }
 })
 
@@ -76,7 +114,14 @@ export const  {
     changeDraftPersonalMail,
     clearDraftPersonal,
     setDraftPersonal,
-    setPersonal
+    setPersonal,
+    changeUpdatePersonalName,
+    changeUpdatePersonalSurname,
+    changeUpdatePersonalBirthday,
+    changeUpdatePersonalStartDate,
+    changeUpdatePersonalDepartment,
+    changeUpdatePersonalPhone,
+    changeUpdatePersonalMail
 } = personalSlice.actions;
 
 export default personalSlice.reducer;
