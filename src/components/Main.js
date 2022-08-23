@@ -45,7 +45,7 @@ function Main() {
 
     const dispatch = useDispatch();
 
-    const currentPersonalId = useSelector((state) => state.personal.personalId)
+
 
     const personal = useSelector((state) => state.personal.personal);
     const name = useSelector((state) => state.personal.draftPersonal.name);
@@ -59,6 +59,7 @@ function Main() {
 
 
 
+    const currentPersonalId = useSelector((state) => state.personal.updatePersonal.personalId);
     const updateName = useSelector((state) => state.personal.updatePersonal.name);
     const updateSurname = useSelector((state) => state.personal.updatePersonal.surname);
     const updateBirthday = useSelector((state) => state.personal.updatePersonal.birthday);
@@ -66,6 +67,8 @@ function Main() {
     const updateDepartment = useSelector((state) => state.personal.updatePersonal.department);
     const updatePhone = useSelector((state) => state.personal.updatePersonal.phone);
     const updateMail = useSelector((state) => state.personal.updatePersonal.mail);
+
+
 
     const handleUpdateNameChange = (e) => {
         dispatch(changeUpdatePersonalName(e.currentTarget.value))
@@ -121,10 +124,11 @@ function Main() {
         dispatch(addPersonal({ name, surname, birthday, startDate, department, phone, mail }))
     }
 
+
     const handleUpdateSubmit = (e) => {
         e.preventDefault();
         console.log(updateName)
-        dispatch(updatePersonal({ id: currentPersonalId, updateName, updateSurname, updateBirthday, updateStartDate, updateDepartment, updatePhone, updateMail }))
+        dispatch(updatePersonal(updateSurname))
     }
 
 
@@ -139,6 +143,7 @@ function Main() {
 
 
     return (
+
         <div className="container">
 
             {<Modal show={showPersonal} onHide={handleClosePersonalModal}>
@@ -343,6 +348,7 @@ function Main() {
 
                     <tbody>
                         <tr>
+                            <td>{personal.id}</td>
                             <td>{personal.name}</td>
                             <td>{personal.surname}</td>
                             <td>{personal.birthday}</td>

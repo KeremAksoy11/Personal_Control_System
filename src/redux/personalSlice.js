@@ -10,13 +10,10 @@ export const deletePersonal = createAsyncThunk("personal/deletePersonal", async 
   await deleteDoc(doc(personalRef, id));
 })
 
-export const updatePersonal = createAsyncThunk("personal/updatePersonal", async ({ id, ...restUserProps }, name) => {
-
-  console.log("id", id);
-  console.log("name", name);
-  const personalDoc = doc(db, "Personal", "nb5rGl2PZrfamZiCQcnL")
+export const updatePersonal = createAsyncThunk("personal/updatePersonal", async (updateSurname) => {
+  const personalDoc = doc(db, "Personal", "sEZ5orAy52thZ4kxxC7v")
   try {
-    await updateDoc(personalDoc, { name: "asdasdas" });
+    await updateDoc(personalDoc, { "surname": updateSurname });
 
   }
   catch (err) {
@@ -34,8 +31,8 @@ const initialState = {
     department: "",
     phone: "",
     mail: "",
+    personalId: "",
   },
-  personalId: "",
   personal: [],
   updatePersonal: {
     name: "",
@@ -45,6 +42,7 @@ const initialState = {
     department: "",
     phone: "",
     mail: "",
+    personalId: "",
   },
 }
 
