@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { addDoc, deleteDoc, doc, updateDoc } from "firebase/firestore"
 import { personalRef, db } from "../config/firebase";
+import uuid from 'uuidv4';
 
 export const addPersonal = createAsyncThunk("personal/addPersonal", async (_, { getState }) => {
   await addDoc(personalRef, getState().personal.draftPersonal)
@@ -10,11 +11,12 @@ export const deletePersonal = createAsyncThunk("personal/deletePersonal", async 
   await deleteDoc(doc(personalRef, id));
 })
 
-export const updatePersonal = createAsyncThunk("personal/updatePersonal", async (updateSurname) => {
-  const personalDoc = doc(db, "Personal", "sEZ5orAy52thZ4kxxC7v")
-  try {
-    await updateDoc(personalDoc, { "surname": updateSurname });
 
+
+export const updatePersonal = createAsyncThunk("personal/updatePersonal", async (name) => {
+  const personalDoc = doc(db, "Personal",)
+  try {
+    await updateDoc(personalDoc, { name: name });
   }
   catch (err) {
     console.error(err)
@@ -31,7 +33,7 @@ const initialState = {
     department: "",
     phone: "",
     mail: "",
-    personalId: "",
+    personalId: uuid(),
   },
   personal: [],
   updatePersonal: {
@@ -51,6 +53,9 @@ const personalSlice = createSlice({
   initialState: initialState,
 
   reducers: {
+    changeDraftPersonalId: (state, action) => {
+      state.draftPersonal.personalId = action.payload;
+    },
     changeDraftPersonalName: (state, action) => {
       state.draftPersonal.name = action.payload;
     },
@@ -122,6 +127,7 @@ export const {
   changeUpdatePersonalDepartment,
   changeUpdatePersonalPhone,
   changeUpdatePersonalMail,
+  changeDraftPersonalId,
   setPersonal
 } = personalSlice.actions;
 

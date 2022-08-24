@@ -11,13 +11,14 @@ import {
     changeDraftPersonalDepartment,
     changeDraftPersonalPhone,
     changeDraftPersonalMail,
+
     changeUpdatePersonalName,
     changeUpdatePersonalSurname,
     changeUpdatePersonalBirthday,
     changeUpdatePersonalStartDate,
     changeUpdatePersonalDepartment,
     changeUpdatePersonalPhone,
-    changeUpdatePersonalMail
+    changeUpdatePersonalMail,
 } from "../redux/personalSlice"
 
 import Button from 'react-bootstrap/Button';
@@ -25,6 +26,7 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from "react-bootstrap/esm/Col";
+
 
 /* import { doc, updateDoc } from "firebase/firestore"
 import { db } from "../config/firebase"; */
@@ -48,6 +50,7 @@ function Main() {
 
 
     const personal = useSelector((state) => state.personal.personal);
+    const personalId = useSelector((state) => state.personal.draftPersonal.personalId);
     const name = useSelector((state) => state.personal.draftPersonal.name);
     const surname = useSelector((state) => state.personal.draftPersonal.surname);
     const birthday = useSelector((state) => state.personal.draftPersonal.birthday);
@@ -59,7 +62,7 @@ function Main() {
 
 
 
-    const currentPersonalId = useSelector((state) => state.personal.updatePersonal.personalId);
+
     const updateName = useSelector((state) => state.personal.updatePersonal.name);
     const updateSurname = useSelector((state) => state.personal.updatePersonal.surname);
     const updateBirthday = useSelector((state) => state.personal.updatePersonal.birthday);
@@ -99,11 +102,9 @@ function Main() {
     const handleNameChange = (e) => {
         dispatch(changeDraftPersonalName(e.currentTarget.value))
     }
-
     const handleSurnameChange = (e) => {
         dispatch(changeDraftPersonalSurname(e.currentTarget.value))
     }
-
     const handleBirthdayChange = (e) => {
         dispatch(changeDraftPersonalBirthday(e.currentTarget.value))
     }
@@ -121,14 +122,14 @@ function Main() {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(addPersonal({ name, surname, birthday, startDate, department, phone, mail }))
+        dispatch(addPersonal({ personalId, name, surname, birthday, startDate, department, phone, mail }))
     }
 
 
     const handleUpdateSubmit = (e) => {
         e.preventDefault();
         console.log(updateName)
-        dispatch(updatePersonal(updateSurname))
+        dispatch(updatePersonal(updateName, updateSurname))
     }
 
 
@@ -331,6 +332,7 @@ function Main() {
                     </div>
 
                     <tr>
+
                         <th>İsim</th>
                         <th>Soy İsim</th>
                         <th>Doğum Tarihi</th>
@@ -348,7 +350,6 @@ function Main() {
 
                     <tbody>
                         <tr>
-                            <td>{personal.id}</td>
                             <td>{personal.name}</td>
                             <td>{personal.surname}</td>
                             <td>{personal.birthday}</td>
