@@ -15,9 +15,8 @@ body {
   transform: translate(-50%, -50%);
 } */
 table {
-  width: 1200px;
+  width: 1270px;
   border-collapse: collapse;
-  overflow: hidden;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   text-overflow: ellipsis;
   position: absolute;
@@ -25,7 +24,9 @@ table {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -40%);
-
+  overflow: scroll;
+  display: block;
+  height: 350px;
 }
 th,
 td {

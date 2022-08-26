@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setPersonal } from "../redux/personalSlice";
 import { setMeet } from "../redux/meetingSlice";
+import { setAnnouncement } from "../redux/announcementsSlice";
 
 
 const firebaseConfig = {
@@ -26,6 +27,8 @@ export const db = getFirestore(app);
 export const personalRef = collection(db, "Personal")
 
 export const meetRef = collection(db, "Meet")
+
+export const announcementRef = collection(db, "Announcements")
 
 export const usePersonalLister = () => {
   const dispatch = useDispatch()
@@ -49,6 +52,19 @@ export const useMeetLister = () => {
         return { id: doc.id, ...data }
       });
       dispatch(setMeet((docs)))
+    });
+  }, [dispatch]);
+};
+
+export const useAnnouncementLister = () => {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    return onSnapshot(announcementRef, (snapshot) => {
+      const docs = snapshot.docs.map((doc) => {
+        const data = doc.data();
+        return { id: doc.id, ...data }
+      });
+      dispatch(setAnnouncement((docs)))
     });
   }, [dispatch]);
 };

@@ -3,6 +3,7 @@ import { addDoc, deleteDoc, doc, updateDoc } from "firebase/firestore"
 import { personalRef, db } from "../config/firebase";
 import uuid from 'uuidv4';
 
+
 export const addPersonal = createAsyncThunk("personal/addPersonal", async (_, { getState }) => {
   await addDoc(personalRef, getState().personal.draftPersonal)
 })
@@ -24,6 +25,9 @@ export const updatePersonal = createAsyncThunk("personal/updatePersonal", async 
   }
 });
 
+const event = new Date();
+const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' }
+
 const initialState = {
   draftPersonal: {
     name: "",
@@ -34,6 +38,7 @@ const initialState = {
     phone: "",
     mail: "",
     personalId: uuid(),
+    createdDate: event.toLocaleDateString('tr-TR', options),
   },
   personal: [],
   updatePersonal: {

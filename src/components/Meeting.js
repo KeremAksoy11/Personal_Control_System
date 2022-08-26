@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addMeet, deleteMeet } from "../redux/meetingSlice"
 import { useMeetLister } from "../config/firebase"
-import '../components/table.css'
 import {
     changeDraftMeetName,
     changeDraftMeetTime,
     changeDraftMeetLink,
     changeDraftMeetSubject,
     changeDraftMeetDate,
+    changeDraftMeetImportance,
 } from "../redux/meetingSlice"
+import "../components/meetTable.css"
 
 
 import Button from 'react-bootstrap/Button';
@@ -32,11 +33,16 @@ function Meeting() {
     const subject = useSelector((state) => state.meet.draftMeet.subject);
     const link = useSelector((state) => state.meet.draftMeet.link);
     const date = useSelector((state) => state.meet.draftMeet.date);
+    const importance = useSelector((state) => state.meet.draftMeet.importance);
+    const createdDate = useSelector((state) => state.meet.draftMeet.createdDate);
 
     const meet = useSelector((state) => state.meet.meet)
 
     const handleNameChange = (e) => {
         dispatch(changeDraftMeetName(e.currentTarget.value))
+    }
+    const handleImportanceChange = (e) => {
+        dispatch(changeDraftMeetImportance(e.currentTarget.value))
     }
     const handleTimeChange = (e) => {
         dispatch(changeDraftMeetTime(e.currentTarget.value))
@@ -53,7 +59,7 @@ function Meeting() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(addMeet({ meetId, name, date, time, subject, link }))
+        dispatch(addMeet({ meetId, name, date, time, subject, link, importance, createdDate }))
     }
 
 
@@ -95,10 +101,24 @@ function Meeting() {
                                 <input type="link" required aria-label="First name" class="form-control" onChange={handleLinkChange} name="addMeet" />
                             </div>
 
+                            <hr />
+                            <p className="text-center" style={{ color: "#39ace7" }}>Önem Derecesi</p>
+                            <div class="input-group">
+
+                                <input type="text" required aria-label="importance" class="form-control" onChange={handleImportanceChange} value={importance} list="importance" />
+                                <datalist id="importance">
+                                    <option>Yüksek</option>
+                                    <option>Normal</option>
+                                </datalist>
+                            </div>
+
                             <br />
                             <div class="col text-center">
                                 <button type="submit" onClick={handleCloseMeetModal} class="btn btn-primary">Toplantıyı Ekle</button>
                             </div>
+
+
+
 
                         </form>
                     </Modal.Body>
@@ -111,7 +131,7 @@ function Meeting() {
                 </Modal.Footer>
             </Modal>}
 
-            <table>
+            <table2>
 
                 <thead>
                     <div>
@@ -126,6 +146,8 @@ function Meeting() {
                         <th>Toplantı Saati</th>
                         <th>Toplantı Adı</th>
                         <th>Toplantı Konusu</th>
+                        <th>Toplantı Önemi</th>
+                        <th>Oluşturulma Tarihi</th>
                         <th>Link</th>
                         <th>Toplantıyı Sil</th>
                     </tr>
@@ -138,6 +160,8 @@ function Meeting() {
                             <td>{meet.time}</td>
                             <td>{meet.name}</td>
                             <td>{meet.subject}</td>
+                            <td>{meet.importance}</td>
+                            <td>{meet.createdDate}</td>
                             <td><a href={meet.link} rel="noopener noreferrer">Toplantıya Katıl</a></td>
                             <td>
                                 <a href={() => false} onClick={() => dispatch(deleteMeet(meet.id))}>
@@ -149,7 +173,7 @@ function Meeting() {
                         </tr>
                     </tbody>
                 )}
-            </table>
+            </table2>
         </div>
     );
 }
