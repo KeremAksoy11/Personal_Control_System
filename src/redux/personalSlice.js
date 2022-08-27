@@ -12,12 +12,11 @@ export const deletePersonal = createAsyncThunk("personal/deletePersonal", async 
   await deleteDoc(doc(personalRef, id));
 })
 
-
-
-export const updatePersonal = createAsyncThunk("personal/updatePersonal", async (name) => {
-  const personalDoc = doc(db, "Personal",)
+export const updatePersonal = createAsyncThunk("personal/updatePersonal", async (id) => {
+  const personalDoc = doc(db, "Personal", id)
+  console.log(id)
   try {
-    await updateDoc(personalDoc, { name: name });
+    await updateDoc(personalDoc, { name: "Ahmet", surname: "can" });
   }
   catch (err) {
     console.error(err)
@@ -39,6 +38,7 @@ const initialState = {
     mail: "",
     personalId: uuid(),
     createdDate: event.toLocaleDateString('tr-TR', options),
+    password: "",
   },
   personal: [],
   updatePersonal: {
@@ -63,6 +63,9 @@ const personalSlice = createSlice({
     },
     changeDraftPersonalName: (state, action) => {
       state.draftPersonal.name = action.payload;
+    },
+    changeDraftPersonalPassword: (state, action) => {
+      state.draftPersonal.password = action.payload;
     },
     changeDraftPersonalSurname: (state, action) => {
       state.draftPersonal.surname = action.payload;
@@ -133,7 +136,8 @@ export const {
   changeUpdatePersonalPhone,
   changeUpdatePersonalMail,
   changeDraftPersonalId,
-  setPersonal
+  changeDraftPersonalPassword,
+  setPersonal,
 } = personalSlice.actions;
 
 export default personalSlice.reducer;

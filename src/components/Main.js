@@ -6,10 +6,14 @@ import '../components/mainTable.css'
 import {
     changeDraftPersonalName, changeDraftPersonalSurname, changeDraftPersonalBirthday, changeDraftPersonalStartDate, changeDraftPersonalDepartment, changeDraftPersonalPhone, changeDraftPersonalMail, changeUpdatePersonalName,
     changeUpdatePersonalSurname, changeUpdatePersonalBirthday, changeUpdatePersonalStartDate, changeUpdatePersonalDepartment,
-    changeUpdatePersonalPhone, changeUpdatePersonalMail,
+    changeUpdatePersonalPhone, changeUpdatePersonalMail, changeDraftPersonalPassword
 } from "../redux/personalSlice"
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { changeName, changeEmail, changePassword, register } from '../redux/authSlice'
+
+
+
 
 function Main() {
     usePersonalLister()
@@ -22,10 +26,12 @@ function Main() {
     const handleCloseUpdatePersonalModal = () => setUpdatePersonal(false);
     const handleShowUpdatePersonalModal = () => setUpdatePersonal(true);
 
+
     const dispatch = useDispatch();
 
     const personal = useSelector((state) => state.personal.personal);
     const personalId = useSelector((state) => state.personal.draftPersonal.personalId);
+    const personalPassword = useSelector((state) => state.personal.draftPersonal.password);
     const createdDate = useSelector((state) => state.personal.draftPersonal.createdDate);
     const name = useSelector((state) => state.personal.draftPersonal.name);
     const surname = useSelector((state) => state.personal.draftPersonal.surname);
@@ -42,6 +48,26 @@ function Main() {
     const updateDepartment = useSelector((state) => state.personal.updatePersonal.department);
     const updatePhone = useSelector((state) => state.personal.updatePersonal.phone);
     const updateMail = useSelector((state) => state.personal.updatePersonal.mail);
+
+    const registerName = useSelector((state) => state.auth.name)
+    const email = useSelector((state) => state.auth.email)
+    const password = useSelector((state) => state.auth.password)
+    const error = useSelector((state) => state.auth.error)
+    const isLoading = useSelector((state) => state.auth.isLoading)
+
+    const handleRegisterNameChange = (e) => {
+        dispatch(changeName(e.currentTarget.value))
+    }
+
+    const handleEmailChange = (e) => {
+        dispatch(changeEmail(e.currentTarget.value))
+    }
+
+    const handlePasswordChange = (e) => {
+        dispatch(changePassword(e.currentTarget.value))
+    }
+
+
 
     const handleUpdateNameChange = (e) => {
         dispatch(changeUpdatePersonalName(e.currentTarget.value))
@@ -99,15 +125,36 @@ function Main() {
         dispatch(changeDraftPersonalMail(e.currentTarget.value))
     }
 
+    const handlePersonalPasswordChange = (e) => {
+        dispatch(changeDraftPersonalPassword(e.currentTarget.value))
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         handleClosePersonalModal();
-        dispatch(addPersonal({ personalId, name, surname, birthday, startDate, department, phone, mail, createdDate }))
+        let modalMail = document.querySelector("#modalMail").value;
+        let confirmMail = document.querySelector("#confirmMail").value;
+        let modalPassword = document.querySelector("#modalPassword").value;
+        let confirmPassword = document.querySelector("#confirmPassword").value;
+        if (modalMail !== confirmMail) {
+            alert("Lütfen Maili Doğrulayın.");
+            e.preventDefault();
+            handleShowPersonalModal();
+        }
+        else if (modalPassword !== confirmPassword) {
+            alert("Lütfen Şifrenizi Doğrulayın.");
+            e.preventDefault();
+            handleShowPersonalModal();
+        }
+        else {
+            dispatch(register({ registerName, email, password }))
+            dispatch(addPersonal({ personalId, name, personalPassword, surname, birthday, startDate, department, phone, mail, createdDate }))
+        }
+
     }
 
     const handleUpdateSubmit = (e) => {
         e.preventDefault();
-        console.log(updateName)
         dispatch(updatePersonal(updateName, updateSurname, updateBirthday, updateStartDate, updateDepartment, updatePhone, updateMail))
     }
 
@@ -122,10 +169,41 @@ function Main() {
                     <Modal.Title>Personel Ekleme</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                    {error && (
+                        <h5 className="small" style={{ color: "red" }}>{error}</h5>
+                    )}
                     <form onSubmit={handleSubmit}>
-                        <p className="text-center" style={{ color: "#39ace7" }}>İsim ve Soy Ad</p>
+                        <p className="text-center" style={{ color: "#39ace7" }}>Kullanıcı Adı</p>
                         <div class="input-group">
-                            <input type="text" required aria-label="name" class="form-control" onChange={handleNameChange} placeholder="İsim" />
+                            <input type="text" id="registerName" class="form-control" name="login" autoFocus onChange={handleRegisterNameChange} />
+                        </div>
+
+                        <p className="text-center" style={{ color: "#39ace7" }}>Mail</p>
+                        <div class="input-group">
+                            <input type="email" id="modalMail" class="form-control" aria-required="true" required
+                                onChange={handleEmailChange} />
+                        </div>
+
+                        <p className="text-center" style={{ color: "#39ace7" }}>Lütfen Maili Doğrulayınız</p>
+                        <div class="input-group">
+                            <input type="email" class="form-control" onChange={handleMailChange} id="confirmMail" name="emailConfirm" />
+                        </div>
+
+                        <p className="text-center" style={{ color: "#39ace7" }}>Şifre</p>
+                        <div class="input-group">
+                            <input type="password" id="modalPassword" class="form-control" name="login"
+                                onChange={handlePasswordChange} />
+                        </div>
+
+                        <p className="text-center" style={{ color: "#39ace7" }}>Lütfen Şifrenizi Doğrulayınız</p>
+                        <div class="input-group">
+                            <input type="password" id="confirmPassword" class="form-control" name="login"
+                                onChange={handlePersonalPasswordChange} />
+                        </div>
+
+                        <p className="text-center" style={{ color: "#39ace7" }}>İsim ve Soy İsim</p>
+                        <div class="input-group">
+                            <input type="text" aria-label="name" class="form-control" onChange={handleNameChange} placeholder="Ad" />
                             <input type="text" aria-label="surname" class="form-control" onChange={handleSurnameChange} placeholder="Soy Ad" />
                         </div>
 
@@ -156,18 +234,12 @@ function Main() {
                         <div class="input-group">
                             <input type="text" required aria-label="phone" class="form-control" onChange={handlePhoneChange} placeholder="Telefon Numarası" />
                         </div>
-
-                        <hr />
-
-                        <p className="text-center" style={{ color: "#39ace7" }}>Mail</p>
-                        <div class="input-group">
-                            <input type="email" required aria-label="mail" class="form-control" onChange={handleMailChange} placeholder="Mail" pattern="[^ @]*@[^ @]*" />
-                        </div>
-
+                        <br />
                         <div class="col text-center">
-                            <button type="submit" onClick={() => dispatch(handleSubmit)} class="btn btn-success">Personeli Ekle</button>
+                            <button type="submit" disabled={isLoading} onClick={() => dispatch(handleSubmit)} class="btn btn-success">Personeli Ekle</button>
                         </div>
                     </form>
+
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="danger" onClick={handleClosePersonalModal}>
@@ -251,6 +323,7 @@ function Main() {
                         <th>Bölüm</th>
                         <th>Telefon Numarası</th>
                         <th>E Posta</th>
+                        <th>Şifre</th>
                         <th>Oluşturulma Tarihi</th>
                         <th>Sil</th>
                         <th>Güncelleme</th>
@@ -268,9 +341,10 @@ function Main() {
                             <td>{personal.department}</td>
                             <td><a href={message + personal.phone + messageText}  >{personal.phone}</a></td>
                             <td><a href={mailto + personal.mail}>{personal.mail}</a></td>
+                            <td>{personal.password}</td>
                             <td>{personal.createdDate}</td>
                             <td>
-                                <a href={() => false} onClick={() => dispatch(deletePersonal(personal.id))}>
+                                <a href={() => false} onClick={() => dispatch(deletePersonal(personal.id, personal.name))}>
                                     <img src="https://img.icons8.com/fluency/344/delete-forever.png" alt="" width="55" height="50" className="d-inline-block align-text-top" />
                                 </a>
                             </td>
