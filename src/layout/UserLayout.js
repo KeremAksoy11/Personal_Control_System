@@ -9,7 +9,7 @@ import { logOut } from "../redux/authSlice"
 import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom'
 
-export default function Layout() {
+export default function UserLayout() {
 
     const currentUser = useCurrentUser()
     const isLoggedIn = useIsLoggedIn();
@@ -46,17 +46,17 @@ export default function Layout() {
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                                <Link to={"/Main"}>
+                                <Link to={"/personalMain"}>
                                     <a className="nav-link active" aria-current="page" href={() => false}>Personeller</a>
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link to={"/Meeting"}>
+                                <Link to={"/personalMeeting"}>
                                     <a className="nav-link" href={() => false}>Toplantılar</a>
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link to={"/Announcements"}>
+                                <Link to={"/personalAnnouncements"}>
                                     <a className="nav-link" href={() => false}>Duyurular</a>
                                 </Link>
                             </li>
