@@ -9,7 +9,7 @@ export const useCurrentUser = () => {
         return onAuthStateChanged(auth, (user) => {
             setUser(user);
         });
-    }, [])
+    }, [user])
 
     return user;
 };

@@ -131,7 +131,7 @@ function Meeting() {
                 </Modal.Footer>
             </Modal>}
 
-            <table2>
+            <tableMeet>
 
                 <thead>
                     <div>
@@ -142,28 +142,28 @@ function Meeting() {
 
                     </div>
                     <tr>
-                        <th>Toplantı Tarihi</th>
-                        <th>Toplantı Saati</th>
-                        <th>Toplantı Adı</th>
-                        <th>Toplantı Konusu</th>
-                        <th>Toplantı Önemi</th>
-                        <th>Oluşturulma Tarihi</th>
-                        <th>Link</th>
-                        <th>Toplantıyı Sil</th>
+                        <th className="text-center">Toplantı Tarihi</th>
+                        <th className="text-center">Toplantı Saati</th>
+                        <th className="text-center">Toplantı Adı</th>
+                        <th className="text-center">Toplantı Konusu</th>
+                        <th className="text-center">Toplantı Önemi</th>
+                        <th className="text-center">Oluşturulma Tarihi</th>
+                        <th className="text-center">Link</th>
+                        <th className="text-center">Toplantıyı Sil</th>
                     </tr>
                 </thead>
 
                 {meet.map((meet) =>
                     <tbody>
                         <tr>
-                            <td>{meet.date}</td>
-                            <td>{meet.time}</td>
-                            <td>{meet.name}</td>
-                            <td>{meet.subject}</td>
-                            <td>{meet.importance}</td>
-                            <td>{meet.createdDate}</td>
-                            <td><a href={meet.link} rel="noopener noreferrer">Toplantıya Katıl</a></td>
-                            <td>
+                            <td className="text-center">{meet.date}</td>
+                            <td className="text-center">{meet.time}</td>
+                            <td className="text-center">{meet.name}</td>
+                            <td className="text-center">{meet.subject}</td>
+                            <td className="text-center">{meet.importance}</td>
+                            <td className="text-center">{meet.createdDate}</td>
+                            <td className="text-center"><a href={meet.link} without rel="noreferrer" target="_blank">Toplantıya Katıl</a></td>
+                            <td className="text-center">
                                 <a href={() => false} onClick={() => dispatch(deleteMeet(meet.id))}>
 
                                     <img src="https://img.icons8.com/fluency/344/delete-forever.png" alt="" width="55" height="50" className="d-inline-block align-text-top" />
@@ -173,7 +173,7 @@ function Meeting() {
                         </tr>
                     </tbody>
                 )}
-            </table2>
+            </tableMeet>
         </div>
     );
 }

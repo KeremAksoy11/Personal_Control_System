@@ -1,7 +1,7 @@
 import React from "react";
 import '../components/AdminSignIn.css'
 import { useSelector, useDispatch } from "react-redux"
-import { changeEmail, changePassword, login } from '../redux/authSlice'
+import { changeEmail, changePassword, adminLogin } from '../redux/authSlice'
 import Loading from './Loading'
 import { Link } from 'react-router-dom'
 
@@ -24,7 +24,7 @@ function AdminSignIn() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(login({ email, password }))
+        dispatch(adminLogin({ email, password }))
     }
 
     return (
@@ -45,7 +45,7 @@ function AdminSignIn() {
                 <form onSubmit={handleSubmit}>
                     <p className="text-center" style={{ color: "#39ace7" }}>Email</p>
                     <input type="email" id="login" className="fadeIn second" name="login"
-                        onChange={handleEmailChange} value={email} />
+                        onChange={handleEmailChange} value={"admin@pcs.com"} disabled />
                     <p className="text-center" style={{ color: "#39ace7" }}>Şifre</p>
                     <input type="password" id="password" className="fadeIn third" name="login"
                         onChange={handlePasswordChange} value={password} />

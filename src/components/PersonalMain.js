@@ -14,34 +14,34 @@ function PersonalMain() {
 
     return (
         <div className="container">
-            <tablepersonal>
+            <tablePersonal>
                 <thead>
                     <tr>
-                        <th>İsim</th>
-                        <th>Soy İsim</th>
-                        <th>Doğum Tarihi</th>
-                        <th>Başlangıç</th>
-                        <th>Bölüm</th>
-                        <th>Telefon Numarası</th>
-                        <th>E Posta</th>
-                        <th>Oluşturulma Tarihi</th>
+                        <th className="text-center">İsim</th>
+                        <th className="text-center">Soy İsim</th>
+                        <th className="text-center">Doğum Tarihi</th>
+                        <th className="text-center">Başlangıç</th>
+                        <th className="text-center">Bölüm</th>
+                        <th className="text-center">Telefon Numarası</th>
+                        <th className="text-center">E Posta</th>
+                        <th className="text-center">Oluşturulma Tarihi</th>
                     </tr>
                 </thead>
                 {personal.map((personal) =>
                     <tbody>
                         <tr>
-                            <td>{personal.name}</td>
-                            <td>{personal.surname}</td>
-                            <td>{personal.birthday}</td>
-                            <td>{personal.startDate}</td>
-                            <td>{personal.department}</td>
-                            <td><a href={message + personal.phone + messageText}  >{personal.phone}</a></td>
-                            <td><a href={mailto + personal.mail}>{personal.mail}</a></td>
-                            <td>{personal.createdDate}</td>
+                            <td className="text-center">{personal.name}</td>
+                            <td className="text-center">{personal.surname}</td>
+                            <td className="text-center">{personal.birthday}</td>
+                            <td className="text-center">{personal.startDate}</td>
+                            <td className="text-center">{personal.department}</td>
+                            <td className="text-center"><a href={message + personal.phone + messageText}  >{personal.phone}</a></td>
+                            <td className="text-center"><a href={mailto + personal.mail}>{personal.mail}</a></td>
+                            <td className="text-center">{personal.createdDate}</td>
                         </tr>
                     </tbody>
                 )}
-            </tablepersonal>
+            </tablePersonal>
         </div>
     );
 }

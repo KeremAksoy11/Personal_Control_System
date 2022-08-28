@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useMeetLister } from "../config/firebase"
-import "../components/meetTable.css"
+import "../components/personalMeeting.css"
 
 function PersonalMeeting() {
     useMeetLister();
@@ -10,32 +10,32 @@ function PersonalMeeting() {
 
     return (
         <div className="container">
-            <table2>
+            <tablePersonalMeet>
                 <thead>
                     <tr>
-                        <th>Toplantı Tarihi</th>
-                        <th>Toplantı Saati</th>
-                        <th>Toplantı Adı</th>
-                        <th>Toplantı Konusu</th>
-                        <th>Toplantı Önemi</th>
-                        <th>Oluşturulma Tarihi</th>
-                        <th>Link</th>
+                        <th className="text-center">Tarihi</th>
+                        <th className="text-center">Saati</th>
+                        <th className="text-center">Adı</th>
+                        <th className="text-center">Konusu</th>
+                        <th className="text-center">Önemi</th>
+                        <th className="text-center">Tarihi</th>
+                        <th className="text-center">Link</th>
                     </tr>
                 </thead>
                 {meet.map((meet) =>
                     <tbody>
                         <tr>
-                            <td>{meet.date}</td>
-                            <td>{meet.time}</td>
-                            <td>{meet.name}</td>
-                            <td>{meet.subject}</td>
-                            <td>{meet.importance}</td>
-                            <td>{meet.createdDate}</td>
-                            <td><a href={meet.link} rel="noopener noreferrer">Toplantıya Katıl</a></td>
+                            <td className="text-center">{meet.date}</td>
+                            <td className="text-center">{meet.time}</td>
+                            <td className="text-center">{meet.name}</td>
+                            <td className="text-center">{meet.subject}</td>
+                            <td className="text-center">{meet.importance}</td>
+                            <td className="text-center">{meet.createdDate}</td>
+                            <td className="text-center"><a href={meet.link} rel="noopener noreferrer">Toplantıya Katıl</a></td>
                         </tr>
                     </tbody>
                 )}
-            </table2>
+            </tablePersonalMeet>
         </div>
     );
 }

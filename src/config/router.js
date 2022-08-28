@@ -20,7 +20,6 @@ export default function Router() {
          <Routes>
             <Route element={<Layout />} > /
                <Route path="/" element={<Main />} />
-               <Route path="/Main" element={<Main />} />
                <Route path="/Meeting" element={<Meeting />} />
                <Route path="/Announcements" element={<Announcements />} />
             </Route>
@@ -28,23 +27,19 @@ export default function Router() {
 
             <Route element={<AdminAuthLayout />}>
                <Route path="/admin-sign-in" element={<AdminSignIn />} />
-               <Route path="/sign-in" element={<SignIn />} />
                <Route path="/forgotPassword" element={<ForgotPassword />} />
             </Route>
-
-
-            <Route element={<AuthLayout />}>
-               <Route path="/sign-in" element={<SignIn />} />
-               <Route path="/admin-sign-in" element={<AdminSignIn />} />
-               <Route path="/forgotPassword" element={<ForgotPassword />} />
-            </Route>
-
-
 
             <Route element={<UserLayout />}>
                <Route path="/personalMain" element={<PersonalMain />} />
                <Route path="/personalMeeting" element={<PersonalMeeting />} />
                <Route path="/personalAnnouncements" element={<PersonalAnnouncements />} />
+            </Route>
+
+
+            <Route element={<AuthLayout />}>
+               <Route path="/sign-in" element={<SignIn />} />
+               <Route path="/forgotPassword" element={<ForgotPassword />} />
             </Route>
          </Routes>
       </BrowserRouter>

@@ -13,8 +13,8 @@ body {
   left: 52%;
   transform: translate(-50%, -50%);
 } */
-table1 {
-  width: 1144px;
+tableAnnouncement {
+  width: 1077px;
   border-collapse: collapse;
   box-shadow: 0 0 20px rgba(1, 20, 19, 0.1);
   text-overflow: ellipsis;
@@ -26,7 +26,7 @@ table1 {
   transform: translate(-50%, -40%);
   overflow: scroll;
   display: block;
-  height: 333px;
+  height: 335px;
 }
 th,
 td {

@@ -6,7 +6,6 @@ body {
 body {
   background: linear-gradient(45deg, #49a09d, #5f2c82);
   font-family: sans-serif;
-  font-weight: 100;
 }
 /* .container {
   position: absolute;
@@ -14,8 +13,8 @@ body {
   left: 52%;
   transform: translate(-50%, -50%);
 } */
-table {
-  width: 1368px;
+tableMain {
+  width: 1423px;
   border-collapse: collapse;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   text-overflow: ellipsis;
@@ -26,11 +25,11 @@ table {
   transform: translate(-50%, -40%);
   overflow: scroll;
   display: block;
-  height: 350px;
+  height: 337px;
 }
 th,
 td {
-  padding: 15px;
+  padding: 25px;
   background-color: rgba(255, 255, 255, 0.2);
   color: #fff;
   text-overflow: ellipsis;

@@ -14,8 +14,8 @@ body {
   left: 52%;
   transform: translate(-50%, -50%);
 } */
-tablepersonal {
-  width: 1080px;
+tablePersonal {
+  width: 1090px;
   border-collapse: collapse;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   text-overflow: ellipsis;
@@ -23,14 +23,11 @@ tablepersonal {
   white-space: nowrap;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -40%);
-  overflow: scroll;
-  display: block;
-  height: 239px;
+  transform: translate(-55%, -40%);
 }
 th,
 td {
-  padding: 10px;
+  padding: 35px;
   background-color: rgba(255, 255, 255, 0.2);
   color: #fff;
   text-overflow: ellipsis;

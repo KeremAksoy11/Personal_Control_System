@@ -117,7 +117,7 @@ function Announcements() {
                 </Modal.Footer>
             </Modal>}
 
-            <table1>
+            <tableAnnouncement>
 
                 <thead>
                     <div>
@@ -128,26 +128,26 @@ function Announcements() {
 
                     </div>
                     <tr>
-                        <th>Duyuru Tarihi</th>
-                        <th>Duyuru Saati</th>
-                        <th>Duyuru Adı</th>
-                        <th>Duyuru Konusu</th>
-                        <th>Duyuru Önemi</th>
-                        <th>Oluşturulma Tarihi</th>
-                        <th>Duyuruyu Sil</th>
+                        <th className="text-center">Duyuru Tarihi</th>
+                        <th className="text-center">Duyuru Saati</th>
+                        <th className="text-center">Duyuru Adı</th>
+                        <th className="text-center">Duyuru Konusu</th>
+                        <th className="text-center">Duyuru Önemi</th>
+                        <th className="text-center">Oluşturulma Tarihi</th>
+                        <th className="text-center">Duyuruyu Sil</th>
                     </tr>
                 </thead>
 
                 {announcement.map((announcement) =>
                     <tbody>
                         <tr>
-                            <td>{announcement.date}</td>
-                            <td>{announcement.time}</td>
-                            <td>{announcement.name}</td>
-                            <td>{announcement.subject}</td>
-                            <td>{announcement.importance}</td>
-                            <td>{announcement.createdDate}</td>
-                            <td>
+                            <td className="text-center">{announcement.date}</td>
+                            <td className="text-center">{announcement.time}</td>
+                            <td className="text-center">{announcement.name}</td>
+                            <td className="text-center">{announcement.subject}</td>
+                            <td className="text-center">{announcement.importance}</td>
+                            <td className="text-center">{announcement.createdDate}</td>
+                            <td className="text-center">
                                 <a href={() => false} onClick={() => dispatch(deleteAnnouncement(announcement.id))}>
 
                                     <img src="https://img.icons8.com/fluency/344/delete-forever.png" alt="" width="55" height="50" className="d-inline-block align-text-top" />
@@ -157,7 +157,7 @@ function Announcements() {
                         </tr>
                     </tbody>
                 )}
-            </table1>
+            </tableAnnouncement>
         </div>
     );
 }

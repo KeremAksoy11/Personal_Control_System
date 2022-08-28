@@ -6,7 +6,6 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useDispatch } from "react-redux"
 import { logOut } from "../redux/authSlice"
-import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom'
 
 export default function UserLayout() {
@@ -26,7 +25,6 @@ export default function UserLayout() {
 
     const dispatch = useDispatch();
 
-    const name = useSelector((state) => state.auth.name)
 
 
     if (isLoggedIn === null) return <Loading />;
@@ -39,7 +37,7 @@ export default function UserLayout() {
                     <a className="navbar-brand" href={() => false}>
                         <img src="https://www.svgrepo.com/show/47767/exchange-personel.svg" alt="" width="30" height="24" className="d-inline-block align-text-top" />
                     </a>
-                    <a className="navbar-brand" href={() => false}>Personel Kontrol Sistemi</a>
+                    <a className="navbar-brand" href={() => false}>Personel Bilgilendirme Sistemi</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -69,16 +67,14 @@ export default function UserLayout() {
                         <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
                             <Button variant="black" onClick={handleShowUser}>
-                                Kişisel Bilgilerim
+                                Personel Bilgilerim
                             </Button>
 
                             <Modal show={showUser} onHide={handleCloseUser}>
                                 <Modal.Header closeButton>
-                                    <Modal.Title>Kişisel Bilgilerim</Modal.Title>
+                                    <Modal.Title>Personel Bilgilerim</Modal.Title>
                                 </Modal.Header>
                                 <Modal.Body>
-                                    İsim: {name}
-                                    <hr />
                                     Email:  {currentUser.email}
                                 </Modal.Body>
                                 <Modal.Footer>

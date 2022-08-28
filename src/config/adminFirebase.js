@@ -1,9 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth"
-import { getFirestore, collection, onSnapshot } from "firebase/firestore";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAMpNlKoftiHFMyIrZx02sAXGyzEIwgz_0",
@@ -16,8 +14,7 @@ const firebaseConfig = {
 };
 
 
-
-const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig, "admin");
 getAnalytics(app);
 export const auth = getAuth(app)
 export const db = getFirestore(app);

@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useAnnouncementLister } from "../config/firebase"
-import "../components/announcementTable.css"
+import "../components/personalAnnouncement.css"
 
 
 
@@ -12,30 +12,30 @@ function PersonalAnnouncements() {
 
     return (
         <div className="container">
-            <table1>
+            <tablePersonalAnnouncement>
                 <thead>
                     <tr>
-                        <th>Duyuru Tarihi</th>
-                        <th>Duyuru Saati</th>
-                        <th>Duyuru Adı</th>
-                        <th>Duyuru Konusu</th>
-                        <th>Duyuru Önemi</th>
-                        <th>Oluşturulma Tarihi</th>
+                        <th className="text-center">Tarihi</th>
+                        <th className="text-center">Saati</th>
+                        <th className="text-center">Adı</th>
+                        <th className="text-center">Konusu</th>
+                        <th className="text-center">Önemi</th>
+                        <th className="text-center">Tarihi</th>
                     </tr>
                 </thead>
                 {announcement.map((announcement) =>
                     <tbody>
                         <tr>
-                            <td>{announcement.date}</td>
-                            <td>{announcement.time}</td>
-                            <td>{announcement.name}</td>
-                            <td>{announcement.subject}</td>
-                            <td>{announcement.importance}</td>
-                            <td>{announcement.createdDate}</td>
+                            <td className="text-center" >{announcement.date}</td>
+                            <td className="text-center">{announcement.time}</td>
+                            <td className="text-center">{announcement.name}</td>
+                            <td className="text-center">{announcement.subject}</td>
+                            <td className="text-center">{announcement.importance}</td>
+                            <td className="text-center">{announcement.createdDate}</td>
                         </tr>
                     </tbody>
                 )}
-            </table1>
+            </tablePersonalAnnouncement>
         </div>
     );
 }

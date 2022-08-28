@@ -14,8 +14,8 @@ body {
   left: 52%;
   transform: translate(-50%, -50%);
 } */
-tableMeet {
-  width: 1169px;
+tablePersonalMeet {
+  width: 870px;
   border-collapse: collapse;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   text-overflow: ellipsis;
@@ -23,10 +23,7 @@ tableMeet {
   white-space: nowrap;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -40%);
-  overflow: scroll;
-  display: block;
-  height: 336px;
+  transform: translate(-55%, -40%);
 }
 th,
 td {

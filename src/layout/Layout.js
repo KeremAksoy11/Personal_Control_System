@@ -30,7 +30,7 @@ export default function Layout() {
 
 
     if (isLoggedIn === null) return <Loading />;
-    else if (isLoggedIn === false) return <Navigate replace to="/sign-in" />
+    else if (isLoggedIn === false) return <Navigate replace to="/admin-sign-in" />
 
     return (
         <>
@@ -39,14 +39,14 @@ export default function Layout() {
                     <a className="navbar-brand" href={() => false}>
                         <img src="https://www.svgrepo.com/show/47767/exchange-personel.svg" alt="" width="30" height="24" className="d-inline-block align-text-top" />
                     </a>
-                    <a className="navbar-brand" href={() => false}>Personel Kontrol Sistemi</a>
+                    <a className="navbar-brand" href={() => false}>Personel Yönetim Sistemi</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                                <Link to={"/Main"}>
+                                <Link to={"/"}>
                                     <a className="nav-link active" aria-current="page" href={() => false}>Personeller</a>
                                 </Link>
                             </li>
@@ -69,12 +69,12 @@ export default function Layout() {
                         <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
                             <Button variant="black" onClick={handleShowUser}>
-                                Kişisel Bilgilerim
+                                Yönetici Bilgilerim
                             </Button>
 
                             <Modal show={showUser} onHide={handleCloseUser}>
                                 <Modal.Header closeButton>
-                                    <Modal.Title>Kişisel Bilgilerim</Modal.Title>
+                                    <Modal.Title>Yönetici Bilgilerim</Modal.Title>
                                 </Modal.Header>
                                 <Modal.Body>
                                     İsim: {name}

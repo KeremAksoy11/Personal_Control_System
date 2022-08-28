@@ -307,7 +307,7 @@ function Main() {
                 </Modal.Footer>
             </Modal>}
 
-            <table>
+            <tableMain>
                 <thead>
                     <div>
                         <a href={() => false} onClick={handleShowPersonalModal}>
@@ -316,17 +316,17 @@ function Main() {
                     </div>
 
                     <tr>
-                        <th>İsim</th>
-                        <th>Soy İsim</th>
-                        <th>Doğum Tarihi</th>
-                        <th>Başlangıç</th>
-                        <th>Bölüm</th>
-                        <th>Telefon Numarası</th>
-                        <th>E Posta</th>
-                        <th>Şifre</th>
-                        <th>Oluşturulma Tarihi</th>
-                        <th>Sil</th>
-                        <th>Güncelleme</th>
+                        <th className="text-center" >İsim</th>
+                        <th className="text-center">Soy İsim</th>
+                        <th className="text-center">Doğum Tarihi</th>
+                        <th className="text-center">Başlangıç</th>
+                        <th className="text-center">Bölüm</th>
+                        <th className="text-center">Telefon Numarası</th>
+                        <th className="text-center">E Posta</th>
+                        <th className="text-center">Şifre</th>
+                        <th className="text-center">Oluşturulma Tarihi</th>
+                        <th className="text-center">Sil</th>
+                        <th className="text-center">Güncelleme</th>
                     </tr>
                 </thead>
 
@@ -334,21 +334,21 @@ function Main() {
 
                     <tbody>
                         <tr>
-                            <td>{personal.name}</td>
-                            <td>{personal.surname}</td>
-                            <td>{personal.birthday}</td>
-                            <td>{personal.startDate}</td>
-                            <td>{personal.department}</td>
-                            <td><a href={message + personal.phone + messageText}  >{personal.phone}</a></td>
-                            <td><a href={mailto + personal.mail}>{personal.mail}</a></td>
-                            <td>{personal.password}</td>
-                            <td>{personal.createdDate}</td>
-                            <td>
+                            <td className="text-center">{personal.name}</td>
+                            <td className="text-center">{personal.surname}</td>
+                            <td className="text-center">{personal.birthday}</td>
+                            <td className="text-center">{personal.startDate}</td>
+                            <td className="text-center">{personal.department}</td>
+                            <td className="text-center"><a without rel="noreferrer" target="_blank" href={message + personal.phone + messageText}  >{personal.phone}</a></td>
+                            <td className="text-center"><a href={mailto + personal.mail}>{personal.mail}</a></td>
+                            <td className="text-center">{personal.password}</td>
+                            <td className="text-center">{personal.createdDate}</td>
+                            <td className="text-center">
                                 <a href={() => false} onClick={() => dispatch(deletePersonal(personal.id, personal.name))}>
                                     <img src="https://img.icons8.com/fluency/344/delete-forever.png" alt="" width="55" height="50" className="d-inline-block align-text-top" />
                                 </a>
                             </td>
-                            <td>
+                            <td className="text-center">
                                 <a href={() => false} onClick={handleShowUpdatePersonalModal}>
                                     <img src="http://cdn.onlinewebfonts.com/svg/img_527780.png" alt="" width="55" height="50" className="d-inline-block align-text-top" />
                                 </a>
@@ -356,7 +356,7 @@ function Main() {
                         </tr>
                     </tbody>
                 )}
-            </table>
+            </tableMain>
         </div>
     );
 }
