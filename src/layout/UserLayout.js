@@ -14,6 +14,8 @@ export default function UserLayout() {
     const currentUser = useCurrentUser()
     const isLoggedIn = useIsLoggedIn();
 
+
+
     const [showUser, setShowUser] = useState(false);
 
     const handleCloseUser = () => setShowUser(false);
@@ -36,10 +38,12 @@ export default function UserLayout() {
         emailjs.sendForm('service_mof9i8g', 'template_1dygfz7', e.target, 'EFkWzF8H1URHxm76t')
             .then((result) => {
                 console.log(result.text);
+                alert('Mail Başarıyla Gönderildi.')
             }, (error) => {
                 console.log(error.text);
             });
         e.target.reset();
+
     }
 
 
@@ -112,20 +116,25 @@ export default function UserLayout() {
                                 <Modal.Body>
                                     <form onSubmit={sendEmail}>
                                         <div className="row pt-5 mx-auto">
-                                            <div className="col-8 form-group mx-auto">
-                                                <input type="text" className="form-control" placeholder="İsim" name="name" required />
-                                            </div>
-                                            <div className="col-8 form-group mx-auto">
+
+                                            <div class="input-group">
                                                 <input type="email" className="form-control" placeholder="Mail" required
                                                     name="email" value={currentUser.email} />
                                             </div>
-                                            <div className="col-8 form-group mx-auto">
+
+                                            <div class="input-group">
+                                                <input type="text" className="form-control" placeholder="İsim" name="name" required />
+                                            </div>
+
+                                            <div class="input-group">
                                                 <input type="text" className="form-control" placeholder="Mail Başlığı" required name="subject" />
                                             </div>
-                                            <div className="col-8 form-group mx-auto">
+                                            <div class="input-group">
                                                 <textarea className="form-control" id="" cols="30" rows="8" placeholder="Mesajınız" name="message" required />
+                                                <br />
                                             </div>
-                                            <div className="col-8 form-group mx-auto">
+
+                                            <div class="col text-center">
                                                 <input type="submit" onClick={handleCloseEmail} className="btn btn-info" value="Mesajı Gönder" />
                                             </div>
                                         </div>
