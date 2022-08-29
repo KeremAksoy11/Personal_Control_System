@@ -86,8 +86,8 @@ function Announcements() {
                             <p className="text-center" style={{ color: "#39ace7" }}>Duyuru Adı ve Konusu</p>
                             <div class="input-group">
 
-                                <input type="text" required aria-label="First name" class="form-control" onChange={handleNameChange} name="addMeet" placeholder="Toplantı Adı" />
-                                <input type="text" aria-label="Last name" class="form-control" onChange={handleSubjectChange} placeholder="Toplantı Konusu" />
+                                <input type="text" required aria-label="First name" class="form-control" onChange={handleNameChange} name="addMeet" placeholder="Duyuru Adı" />
+                                <input type="text" aria-label="Last name" class="form-control" onChange={handleSubjectChange} placeholder="Duyuru Konusu" />
                             </div>
 
                             <hr />

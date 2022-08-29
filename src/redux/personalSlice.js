@@ -12,11 +12,11 @@ export const deletePersonal = createAsyncThunk("personal/deletePersonal", async 
   await deleteDoc(doc(personalRef, id));
 })
 
-export const updatePersonal = createAsyncThunk("personal/updatePersonal", async (id) => {
+export const updatePersonal = createAsyncThunk("personal/updatePersonal", async (id, updateName) => {
   const personalDoc = doc(db, "Personal", id)
   console.log(id)
   try {
-    await updateDoc(personalDoc, { name: "Ahmet", surname: "can" });
+    await updateDoc(personalDoc, { name: updateName });
   }
   catch (err) {
     console.error(err)

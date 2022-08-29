@@ -7,6 +7,7 @@ import Modal from 'react-bootstrap/Modal';
 import { useDispatch } from "react-redux"
 import { logOut } from "../redux/authSlice"
 import { Link } from 'react-router-dom'
+import emailjs from "emailjs-com"
 
 export default function UserLayout() {
 
@@ -23,7 +24,23 @@ export default function UserLayout() {
     const handleCloseClose = () => setShowClose(false);
     const handleShowClose = () => setShowClose(true);
 
+
+    const [showEmail, setShowEmail] = useState(false);
+    const handleCloseEmail = () => setShowEmail(false);
+    const handleShowEmail = () => setShowEmail(true);
+
     const dispatch = useDispatch();
+
+    function sendEmail(e) {
+        e.preventDefault();
+        emailjs.sendForm('service_mof9i8g', 'template_1dygfz7', e.target, 'EFkWzF8H1URHxm76t')
+            .then((result) => {
+                console.log(result.text);
+            }, (error) => {
+                console.log(error.text);
+            });
+        e.target.reset();
+    }
 
 
 
@@ -67,7 +84,7 @@ export default function UserLayout() {
                         <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
                             <Button variant="black" onClick={handleShowUser}>
-                                Personel Bilgilerim
+                                Bilgilerim
                             </Button>
 
                             <Modal show={showUser} onHide={handleCloseUser}>
@@ -83,11 +100,49 @@ export default function UserLayout() {
                                     </Button>
                                 </Modal.Footer>
                             </Modal>
+                            <hr />
+                            <Button variant="black" onClick={handleShowEmail}>
+                                Mail Gönder
+                            </Button>
+
+                            <Modal show={showEmail} onHide={handleCloseEmail}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>Email Gönder</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    <form onSubmit={sendEmail}>
+                                        <div className="row pt-5 mx-auto">
+                                            <div className="col-8 form-group mx-auto">
+                                                <input type="text" className="form-control" placeholder="İsim" name="name" required />
+                                            </div>
+                                            <div className="col-8 form-group mx-auto">
+                                                <input type="email" className="form-control" placeholder="Mail" required
+                                                    name="email" value={currentUser.email} />
+                                            </div>
+                                            <div className="col-8 form-group mx-auto">
+                                                <input type="text" className="form-control" placeholder="Mail Başlığı" required name="subject" />
+                                            </div>
+                                            <div className="col-8 form-group mx-auto">
+                                                <textarea className="form-control" id="" cols="30" rows="8" placeholder="Mesajınız" name="message" required />
+                                            </div>
+                                            <div className="col-8 form-group mx-auto">
+                                                <input type="submit" onClick={handleCloseEmail} className="btn btn-info" value="Mesajı Gönder" />
+                                            </div>
+                                        </div>
+                                    </form>
+                                </Modal.Body>
+                                <Modal.Footer>
+                                    <Button variant="danger" onClick={handleCloseEmail}>
+                                        Kapat
+                                    </Button>
+                                </Modal.Footer>
+                            </Modal>
 
                             <li><hr className="dropdown-divider" /></li>
                             <Button variant="black" onClick={handleShowClose}>
                                 Çıkış Yap
                             </Button>
+
                             <Modal show={showClose} onHide={handleCloseClose}>
                                 <Modal.Header closeButton>
                                     <Modal.Title>Çıkış Yapmak İstediğinizden Emin Misiniz?</Modal.Title>

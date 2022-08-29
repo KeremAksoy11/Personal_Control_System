@@ -6,12 +6,11 @@ import '../components/mainTable.css'
 import {
     changeDraftPersonalName, changeDraftPersonalSurname, changeDraftPersonalBirthday, changeDraftPersonalStartDate, changeDraftPersonalDepartment, changeDraftPersonalPhone, changeDraftPersonalMail, changeUpdatePersonalName,
     changeUpdatePersonalSurname, changeUpdatePersonalBirthday, changeUpdatePersonalStartDate, changeUpdatePersonalDepartment,
-    changeUpdatePersonalPhone, changeUpdatePersonalMail, changeDraftPersonalPassword
+    changeUpdatePersonalPhone, changeUpdatePersonalMail, changeDraftPersonalPassword,
 } from "../redux/personalSlice"
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { changeName, changeEmail, changePassword, register } from '../redux/authSlice'
-
 
 
 
@@ -25,6 +24,8 @@ function Main() {
     const [showUpdatePersonal, setUpdatePersonal] = useState(false);
     const handleCloseUpdatePersonalModal = () => setUpdatePersonal(false);
     const handleShowUpdatePersonalModal = () => setUpdatePersonal(true);
+
+
 
 
     const dispatch = useDispatch();
@@ -154,9 +155,13 @@ function Main() {
     }
 
     const handleUpdateSubmit = (e) => {
+
         e.preventDefault();
-        dispatch(updatePersonal(updateName, updateSurname, updateBirthday, updateStartDate, updateDepartment, updatePhone, updateMail))
+        dispatch(updatePersonal(personal.id, updateName, updateSurname, updateBirthday, updateStartDate, updateDepartment, updatePhone, updateMail))
+
     }
+
+
 
     const message = "https://wa.me/90"
     const messageText = "?text=Merhaba"
@@ -344,12 +349,12 @@ function Main() {
                             <td className="text-center">{personal.password}</td>
                             <td className="text-center">{personal.createdDate}</td>
                             <td className="text-center">
-                                <a href={() => false} onClick={() => dispatch(deletePersonal(personal.id, personal.name))}>
+                                <a href={() => false} onClick={() => dispatch(deletePersonal(personal.id))}>
                                     <img src="https://img.icons8.com/fluency/344/delete-forever.png" alt="" width="55" height="50" className="d-inline-block align-text-top" />
                                 </a>
                             </td>
                             <td className="text-center">
-                                <a href={() => false} onClick={handleShowUpdatePersonalModal}>
+                                <a href={() => false} onClick={() => dispatch(handleShowUpdatePersonalModal)}>
                                     <img src="http://cdn.onlinewebfonts.com/svg/img_527780.png" alt="" width="55" height="50" className="d-inline-block align-text-top" />
                                 </a>
                             </td>
