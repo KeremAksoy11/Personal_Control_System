@@ -15,7 +15,7 @@ body {
   transform: translate(-50%, -50%);
 } */
 tablePersonal {
-  width: 1090px;
+  width: 1090;
   border-collapse: collapse;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   text-overflow: ellipsis;
@@ -23,7 +23,10 @@ tablePersonal {
   white-space: nowrap;
   top: 50%;
   left: 50%;
-  transform: translate(-55%, -40%);
+  transform: translate(-51%, -41%);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 th,
 td {

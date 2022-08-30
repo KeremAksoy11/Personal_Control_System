@@ -25,7 +25,7 @@ function PersonalAnnouncements() {
                 </thead>
                 {announcement.map((announcement) =>
                     <tbody>
-                        <tr>
+                        <tr key={announcement.id}>
                             <td className="text-center" >{announcement.date}</td>
                             <td className="text-center">{announcement.time}</td>
                             <td className="text-center">{announcement.name}</td>

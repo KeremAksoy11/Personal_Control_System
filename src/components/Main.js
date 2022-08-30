@@ -164,7 +164,7 @@ function Main() {
 
 
     const message = "https://wa.me/90"
-    const messageText = "?text=Merhaba"
+    const messageText = "?text=Kolay Gelsin!"
     const mailto = "mailto:"
 
     return (
@@ -179,69 +179,69 @@ function Main() {
                     )}
                     <form onSubmit={handleSubmit}>
                         <p className="text-center" style={{ color: "#39ace7" }}>Kullanıcı Adı</p>
-                        <div class="input-group">
-                            <input type="text" id="registerName" class="form-control" name="login" autoFocus onChange={handleRegisterNameChange} />
+                        <div className="input-group">
+                            <input type="text" id="registerName" className="form-control" name="login" autoFocus onChange={handleRegisterNameChange} />
                         </div>
 
                         <p className="text-center" style={{ color: "#39ace7" }}>Mail</p>
-                        <div class="input-group">
-                            <input type="email" id="modalMail" class="form-control" aria-required="true" required
+                        <div className="input-group">
+                            <input type="email" id="modalMail" className="form-control" aria-required="true" required
                                 onChange={handleEmailChange} />
                         </div>
 
                         <p className="text-center" style={{ color: "#39ace7" }}>Lütfen Maili Doğrulayınız</p>
-                        <div class="input-group">
-                            <input type="email" class="form-control" onChange={handleMailChange} id="confirmMail" name="emailConfirm" />
+                        <div className="input-group">
+                            <input type="email" className="form-control" onChange={handleMailChange} id="confirmMail" name="emailConfirm" />
                         </div>
 
                         <p className="text-center" style={{ color: "#39ace7" }}>Şifre</p>
-                        <div class="input-group">
-                            <input type="password" id="modalPassword" class="form-control" name="login"
+                        <div className="input-group">
+                            <input type="password" id="modalPassword" className="form-control" name="login"
                                 onChange={handlePasswordChange} />
                         </div>
 
                         <p className="text-center" style={{ color: "#39ace7" }}>Lütfen Şifrenizi Doğrulayınız</p>
-                        <div class="input-group">
-                            <input type="password" id="confirmPassword" class="form-control" name="login"
+                        <div className="input-group">
+                            <input type="password" id="confirmPassword" className="form-control" name="login"
                                 onChange={handlePersonalPasswordChange} />
                         </div>
 
                         <p className="text-center" style={{ color: "#39ace7" }}>İsim ve Soy İsim</p>
-                        <div class="input-group">
-                            <input type="text" aria-label="name" class="form-control" onChange={handleNameChange} placeholder="Ad" />
-                            <input type="text" aria-label="surname" class="form-control" onChange={handleSurnameChange} placeholder="Soy Ad" />
+                        <div className="input-group">
+                            <input type="text" aria-label="name" className="form-control" onChange={handleNameChange} placeholder="Ad" />
+                            <input type="text" aria-label="surname" className="form-control" onChange={handleSurnameChange} placeholder="Soy Ad" />
                         </div>
 
                         <hr />
 
-                        <div class="input-group">
-                            <span class="input-group-text">Doğum Tarihi</span>
-                            <input type="date" required aria-label="birthday" class="form-control" onChange={handleBirthdayChange} />
+                        <div className="input-group">
+                            <span className="input-group-text">Doğum Tarihi</span>
+                            <input type="date" required aria-label="birthday" className="form-control" onChange={handleBirthdayChange} />
                         </div>
 
                         <hr />
 
-                        <div class="input-group">
-                            <span class="input-group-text">İşe Başlangıç Tarihi</span>
-                            <input type="date" required aria-label="startDate" class="form-control" onChange={handleStartDateChange} />
+                        <div className="input-group">
+                            <span className="input-group-text">İşe Başlangıç Tarihi</span>
+                            <input type="date" required aria-label="startDate" className="form-control" onChange={handleStartDateChange} />
                         </div>
 
                         <hr />
 
                         <p className="text-center" style={{ color: "#39ace7" }}>Departman</p>
-                        <div class="input-group">
-                            <input type="text" required aria-label="department" class="form-control" onChange={handleDepartmentChange} placeholder="Departman" />
+                        <div className="input-group">
+                            <input type="text" required aria-label="department" className="form-control" onChange={handleDepartmentChange} placeholder="Departman" />
                         </div>
 
                         <hr />
 
                         <p className="text-center" style={{ color: "#39ace7" }}>Telefon Numarası</p>
-                        <div class="input-group">
-                            <input type="text" required aria-label="phone" class="form-control" onChange={handlePhoneChange} placeholder="Telefon Numarası" />
+                        <div className="input-group">
+                            <input type="text" required aria-label="phone" className="form-control" onChange={handlePhoneChange} placeholder="Telefon Numarası" />
                         </div>
                         <br />
-                        <div class="col text-center">
-                            <button type="submit" disabled={isLoading} onClick={() => dispatch(handleSubmit)} class="btn btn-success">Personeli Ekle</button>
+                        <div className="col text-center">
+                            <button type="submit" disabled={isLoading} onClick={() => dispatch(handleSubmit)} className="btn btn-success">Personeli Ekle</button>
                         </div>
                     </form>
 
@@ -260,48 +260,48 @@ function Main() {
                 <Modal.Body>
                     <form onSubmit={handleUpdateSubmit}>
                         <p className="text-center" style={{ color: "#39ace7" }}>İsim ve Soy Ad</p>
-                        <div class="input-group">
-                            <input type="text" required aria-label="name" class="form-control" onChange={handleUpdateNameChange} placeholder="İsim" />
-                            <input type="text" aria-label="surname" class="form-control" onChange={handleUpdateSurnameChange} placeholder="Soy Ad" />
+                        <div className="input-group">
+                            <input type="text" required aria-label="name" className="form-control" onChange={handleUpdateNameChange} placeholder="İsim" />
+                            <input type="text" aria-label="surname" className="form-control" onChange={handleUpdateSurnameChange} placeholder="Soy Ad" />
                         </div>
 
                         <hr />
 
-                        <div class="input-group">
-                            <span class="input-group-text">Doğum Tarihi</span>
-                            <input type="date" required aria-label="birthday" class="form-control" onChange={handleUpdateBirthdayChange} />
+                        <div className="input-group">
+                            <span className="input-group-text">Doğum Tarihi</span>
+                            <input type="date" required aria-label="birthday" className="form-control" onChange={handleUpdateBirthdayChange} />
                         </div>
 
                         <hr />
 
-                        <div class="input-group">
-                            <span class="input-group-text">İşe Başlangıç Tarihi</span>
-                            <input type="date" required aria-label="startDate" class="form-control" onChange={handleUpdateStartDateChange} />
+                        <div className="input-group">
+                            <span className="input-group-text">İşe Başlangıç Tarihi</span>
+                            <input type="date" required aria-label="startDate" className="form-control" onChange={handleUpdateStartDateChange} />
                         </div>
 
                         <hr />
 
                         <p className="text-center" style={{ color: "#39ace7" }}>Departman</p>
-                        <div class="input-group">
-                            <input type="text" required aria-label="department" class="form-control" onChange={handleUpdateDepartmentChange} placeholder="Departman" />
+                        <div className="input-group">
+                            <input type="text" required aria-label="department" className="form-control" onChange={handleUpdateDepartmentChange} placeholder="Departman" />
                         </div>
 
                         <hr />
 
                         <p className="text-center" style={{ color: "#39ace7" }}>Telefon Numarası</p>
-                        <div class="input-group">
-                            <input type="text" required aria-label="phone" class="form-control" onChange={handleUpdatePhoneChange} placeholder="Telefon Numarası" />
+                        <div className="input-group">
+                            <input type="text" required aria-label="phone" className="form-control" onChange={handleUpdatePhoneChange} placeholder="Telefon Numarası" />
                         </div>
 
                         <hr />
 
                         <p className="text-center" style={{ color: "#39ace7" }}>Mail</p>
-                        <div class="input-group">
-                            <input type="email" required aria-label="mail" class="form-control" onChange={handleUpdateMailChange} placeholder="Mail" pattern="[^ @]*@[^ @]*" />
+                        <div className="input-group">
+                            <input type="email" required aria-label="mail" className="form-control" onChange={handleUpdateMailChange} placeholder="Mail" pattern="[^ @]*@[^ @]*" />
                         </div>
 
-                        <div class="col text-center">
-                            <button type="submit" onClick={() => dispatch(handleUpdateSubmit)} class="btn btn-success">Personeli Güncelle</button>
+                        <div className="col text-center">
+                            <button type="submit" onClick={() => dispatch(handleUpdateSubmit)} className="btn btn-success">Personeli Güncelle</button>
                         </div>
                     </form>
                 </Modal.Body>

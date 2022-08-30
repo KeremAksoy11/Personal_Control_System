@@ -29,7 +29,7 @@ function PersonalMain() {
                 </thead>
                 {personal.map((personal) =>
                     <tbody>
-                        <tr>
+                        <tr >
                             <td className="text-center">{personal.name}</td>
                             <td className="text-center">{personal.surname}</td>
                             <td className="text-center">{personal.birthday}</td>

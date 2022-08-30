@@ -1,70 +1,75 @@
-# Getting Started with Create React App
+# Welcome My Personal Control System App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## English Description
 
-## Available Scripts
+### I wrote it using React - Redux - Firabase Auth - FireStore. There are 2 panels on my site. It is well separated into Staff panel and Admin panel. Adding and deleting personnel, adding and deleting announcements, adding and deleting meetings are performed in the admin panel. Admin panel has all the information. On the Staff panel, only the Staff - Announcement - Meetings information list appears. There is a service where staff can send e-mails. In the future, information updates will be added to the admin panel.
 
-In the project directory, you can run:
+<hr>
 
-### `npm start`
+## Turkish Description
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### React - Redux - Firabase Auth - FireStore kullanılarak yazdım. Sitemde 2 tane panel bulunmaktadır. Personel paneli ve Yönetici paneli şeklinde iyi ayrılmaktadır. Yönetici panelinde Personel ekleme ve silme, Duyuru ekleme ve silme, Toplantı ekleme ve silme işlemleri yapılmaktadır. Admin paneli tüm bilgilere sahiptir. Personel panelinde ise sadece Personel - Duyuru - Toplantılar bilgi listesi görünmektedir. Personellerin mail gönderebileceği bir servis bulunmaktadır. İlerleyen zamanlarda yönetici paneline bilgi güncelleme işlemleri eklenecektir.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<hr>
 
-### `npm test`
+# App Views
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Admin Sign In Panel
 
-### `npm run build`
+![App View](View/adminSignIn.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Admin Employee List
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![App View](View/adminMain.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Admin Employee Add Panel
 
-### `npm run eject`
+![App View](View/adminMainAdd.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Admin Meet Panel
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![App View](View/adminMeet.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Admin Meet Add Panel
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+![App View](View/adminMeetAdd.png)
 
-## Learn More
+## Admin Announcement Panel
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![App View](View/adminAnnoun.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Admin Announcement Add Panel
 
-### Code Splitting
+![App View](View/adminAnnounAdd.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Admin Exit Panel
 
-### Analyzing the Bundle Size
+![App View](View/adminExit.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Employee Sign İn Panel
 
-### Making a Progressive Web App
+![App View](View/personalSignIn.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Employee Main List
 
-### Advanced Configuration
+![App View](View/personalMain.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Employee Meet List
 
-### Deployment
+![App View](View/personalMeet.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Employee Announcement List
 
-### `npm run build` fails to minify
+![App View](View/personalAnnoun.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Employee Mail Panel
+
+![App View](View/personalMail.png)
+
+## Forgot Password
+
+![App View](View/forgot.png)
+
+# Finally Note
+
+## Redux, Firabase - FireStore was my first site to use. I want to evolve by making more apps in React - Redux - Firebase - FireStore.

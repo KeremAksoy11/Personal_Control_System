@@ -78,34 +78,34 @@ function Meeting() {
 
                             <p className="text-center" style={{ color: "#39ace7" }}>Toplantı Tarihi</p>
 
-                            <div class="input-group">
-                                <span class="input-group-text">Tarih ve Saat</span>
-                                <input type="date" required aria-label="First name" class="form-control" onChange={handleDateChange} value={date} name="addMeet" />
-                                <input type="time" aria-label="Last name" class="form-control" onChange={handleTimeChange} value={time} />
+                            <div className="input-group">
+                                <span className="input-group-text">Tarih ve Saat</span>
+                                <input type="date" required aria-label="First name" className="form-control" onChange={handleDateChange} value={date} name="addMeet" />
+                                <input type="time" aria-label="Last name" className="form-control" onChange={handleTimeChange} value={time} />
                             </div>
 
                             <hr />
                             <p className="text-center" style={{ color: "#39ace7" }}>Toplantı Adı ve Konusu</p>
-                            <div class="input-group">
+                            <div className="input-group">
 
-                                <input type="text" required aria-label="First name" class="form-control" onChange={handleNameChange} name="addMeet" placeholder="Toplantı Adı" />
-                                <input type="text" aria-label="Last name" class="form-control" onChange={handleSubjectChange} placeholder="Toplantı Konusu" />
+                                <input type="text" required aria-label="First name" className="form-control" onChange={handleNameChange} name="addMeet" placeholder="Toplantı Adı" />
+                                <input type="text" aria-label="Last name" className="form-control" onChange={handleSubjectChange} placeholder="Toplantı Konusu" />
                             </div>
 
 
 
                             <hr />
                             <p className="text-center" style={{ color: "#39ace7" }}>Toplantı Linki</p>
-                            <div class="input-group">
-                                <span class="input-group-text">Link:</span>
-                                <input type="link" required aria-label="First name" class="form-control" onChange={handleLinkChange} name="addMeet" />
+                            <div className="input-group">
+                                <span className="input-group-text">Link:</span>
+                                <input type="link" required aria-label="First name" className="form-control" onChange={handleLinkChange} name="addMeet" />
                             </div>
 
                             <hr />
                             <p className="text-center" style={{ color: "#39ace7" }}>Önem Derecesi</p>
-                            <div class="input-group">
+                            <div className="input-group">
 
-                                <input type="text" required aria-label="importance" class="form-control" onChange={handleImportanceChange} value={importance} list="importance" />
+                                <input type="text" required aria-label="importance" className="form-control" onChange={handleImportanceChange} value={importance} list="importance" />
                                 <datalist id="importance">
                                     <option>Yüksek</option>
                                     <option>Normal</option>
@@ -113,8 +113,8 @@ function Meeting() {
                             </div>
 
                             <br />
-                            <div class="col text-center">
-                                <button type="submit" onClick={handleCloseMeetModal} class="btn btn-primary">Toplantıyı Ekle</button>
+                            <div className="col text-center">
+                                <button type="submit" onClick={handleCloseMeetModal} className="btn btn-primary">Toplantıyı Ekle</button>
                             </div>
 
 

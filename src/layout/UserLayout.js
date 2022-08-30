@@ -119,7 +119,7 @@ export default function UserLayout() {
 
                                             <div class="input-group">
                                                 <input type="email" className="form-control" placeholder="Mail" required
-                                                    name="email" value={currentUser.email} />
+                                                    name="email" defaultValue={currentUser.email} />
                                             </div>
 
                                             <div class="input-group">

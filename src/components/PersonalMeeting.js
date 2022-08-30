@@ -24,7 +24,7 @@ function PersonalMeeting() {
                 </thead>
                 {meet.map((meet) =>
                     <tbody>
-                        <tr>
+                        <tr key={meet.id}>
                             <td className="text-center">{meet.date}</td>
                             <td className="text-center">{meet.time}</td>
                             <td className="text-center">{meet.name}</td>

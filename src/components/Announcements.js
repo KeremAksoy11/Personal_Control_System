@@ -76,25 +76,25 @@ function Announcements() {
 
                             <p className="text-center" style={{ color: "#39ace7" }}>Duyurunun Yürürlülüğe Gireceği Tarih</p>
 
-                            <div class="input-group">
-                                <span class="input-group-text">Tarih ve Saat</span>
-                                <input type="date" required aria-label="First name" class="form-control" onChange={handleDateChange} value={date} name="addMeet" />
-                                <input type="time" aria-label="Last name" class="form-control" onChange={handleTimeChange} value={time} />
+                            <div className="input-group">
+                                <span className="input-group-text">Tarih ve Saat</span>
+                                <input type="date" required aria-label="First name" className="form-control" onChange={handleDateChange} value={date} name="addMeet" />
+                                <input type="time" aria-label="Last name" className="form-control" onChange={handleTimeChange} value={time} />
                             </div>
 
                             <hr />
                             <p className="text-center" style={{ color: "#39ace7" }}>Duyuru Adı ve Konusu</p>
-                            <div class="input-group">
+                            <div className="input-group">
 
-                                <input type="text" required aria-label="First name" class="form-control" onChange={handleNameChange} name="addMeet" placeholder="Duyuru Adı" />
-                                <input type="text" aria-label="Last name" class="form-control" onChange={handleSubjectChange} placeholder="Duyuru Konusu" />
+                                <input type="text" required aria-label="First name" className="form-control" onChange={handleNameChange} name="addMeet" placeholder="Duyuru Adı" />
+                                <input type="text" aria-label="Last name" className="form-control" onChange={handleSubjectChange} placeholder="Duyuru Konusu" />
                             </div>
 
                             <hr />
                             <p className="text-center" style={{ color: "#39ace7" }}>Önem Derecesi</p>
-                            <div class="input-group">
+                            <div className="input-group">
 
-                                <input type="text" required aria-label="importance" class="form-control" onChange={handleImportanceChange} value={importance} list="importance" />
+                                <input type="text" required aria-label="importance" className="form-control" onChange={handleImportanceChange} value={importance} list="importance" />
                                 <datalist id="importance">
                                     <option>Yüksek</option>
                                     <option>Normal</option>
@@ -102,8 +102,8 @@ function Announcements() {
                             </div>
 
                             <br />
-                            <div class="col text-center">
-                                <button type="submit" onClick={handleCloseAnnouncementModal} class="btn btn-primary">Duyuru Ekle</button>
+                            <div className="col text-center">
+                                <button type="submit" onClick={handleCloseAnnouncementModal} className="btn btn-primary">Duyuru Ekle</button>
                             </div>
 
                         </form>
