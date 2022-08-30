@@ -56,7 +56,7 @@
 
 ## Employee Meet List
 
-![App View](View/personalMeet.png)
+![App View](View/PersonalMeet.png)
 
 ## Employee Announcement List
 
